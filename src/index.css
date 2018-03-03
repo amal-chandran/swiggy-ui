@@ -2,4 +2,87 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+ul, li {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0px;
+}
+
+.Home .MainContainer {
+  padding: 10px;
+  min-height: 30rem;
+}
+
+.Home .MainContainer.SectionOne {
+  background: gray;
+}
+
+.Home .MainContainer.SectionTwo {
+  background: lightblue;
+  background: url("./Assets/ImageHome.webp");
+  background-size: cover;
+  background-position: 100%;
+}
+
+.FooterSectionHead {
+  color: gray;
+  font-size: 15px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.FooterSectionList a, .FooterSectionList a:visited {
+  color: white;
+}
+
+.SocialList {
+  text-align: right;
+}
+
+.SocialList li {
+  display: inline-block;
+  padding: .8rem;
+  padding-top: 0px;
+}
+
+.SocialList i {
+  color: white;
+  font-size: 2rem;
+}
+
+.FooterSectionList li {
+  padding: .5rem 0rem;
+}
+
+.FooterSection {
+  background: #000000;
+}
+
+.FooterSection .SectionWrapper {
+  padding: 4rem 0;
+}
+
+.CopyWright {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+}
+
+.Header {
+  margin: 8px;
+}
+
+.HeaderLogo {
+  width: 180px;
+}
+
+.HeaderAppIcon {
+  padding-left: 0.8em;
+  font-size: 1.4em;
+  color: black;
 }
