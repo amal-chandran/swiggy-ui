@@ -6,7 +6,7 @@ export default class Wrapper extends Component {
         return (
             <Grid container justify="center" alignItems='center' spacing={0}>
                 <Grid item ></Grid>
-                <Grid item xs={8}>
+                <Grid item xs={11}>
                     {this.props.children}
                 </Grid>
                 <Grid item ></Grid>

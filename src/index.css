@@ -75,6 +75,7 @@ ul, li {
 
 .Header {
   margin: 8px;
+  padding-bottom: 6px;
 }
 
 .HeaderLogo {
@@ -85,4 +86,21 @@ ul, li {
   padding-left: 0.8em;
   font-size: 1.4em;
   color: black;
+}
+
+.HeaderRised {
+  margin: 0px;
+  border-bottom: 1px solid #c1c1c1;
+  box-shadow: 0 0 13px 0px #c1c1c1;
+  background: #fff;
+}
+
+.Menu {
+  text-align: right;
+  margin-top: 0;
+}
+
+.Menu li {
+  display: inline-block;
+  padding: 1rem;
 }
