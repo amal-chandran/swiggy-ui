@@ -5,7 +5,7 @@ import Select from 'react-select';
 
 
 import { Normal } from "./../Layouts";
-import About from './../Components/SmallComponents/About';
+// import About from './../Components/SmallComponents/About';
 
 class Welcome extends Component {
 
@@ -17,8 +17,8 @@ class Welcome extends Component {
                     <Grid item>
                         <h1 style={{ textAlign: "center", color: "#fff", textShadow: "1px 1px 4px rgba(0,0,0,.8)", fontWeight: "50" }}>Order from restaurants near you</h1>
                         <SelectLocations />
-                        If your location is unavailable please select your nearest city
-                            <Button variant="raised"
+                        {/* If your location is unavailable please select your nearest city */}
+                        <Button variant="raised"
                             style={{ backgroundColor: "#fc8019", color: "white", fontSize: "12px", width: "80%" }}>
                             {/* {this.state.showloading ? <i className="fa fa-spinner fa-spin"></i> : "SHOW RESTAURANTS"} */}
                             {"SHOW RESTAURANTS"}

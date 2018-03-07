@@ -17,7 +17,7 @@ const RestaurantCard = (props) => {
             <CardContent className={classes.cardContent}>
                 <RestaurantDetails {...data} />
             </CardContent>
-            <CardActions style={{ justifyContent: 'center', borderTop: '0.5px solid lightgrey' }}>
+            <CardActions className={classes.CardActions} >
                 <Button size="small" onClick={() => props.viewOpen(data)} style={{ color: '#5d8ed5' }} >
                     Quick View
 											</Button>
@@ -41,6 +41,16 @@ const styles = theme => ({
             paddingBottom: '0',
             boxShadow: "0 0 18px #e0e0e0",
         },
+        '& $CardActions': {
+            visibility: 'hidden'
+        },
+        '&:hover $CardActions': {
+            visibility: 'visible'
+        },
+    },
+    CardActions: {
+        justifyContent: 'center',
+        borderTop: '0.5px solid lightgrey'
     },
     media: {
         height: '14em',

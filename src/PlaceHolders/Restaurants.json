@@ -1,0 +1,110 @@
+[
+    {
+        "image": "./Images/Hot1.jpg",
+        "address": "123,XYZ Nagar",
+        "name": "Firewood Biryani",
+        "type": "Chicken biryani,Chicken 65,Chicken Tikka",
+        "rating": "3.9",
+        "deliveryTime": "25mins",
+        "minCost": "Rs.200 for Two"
+    },
+    {
+        "image": "./Images/Hot2.jpg",
+        "address": "123,ABC Nagar",
+        "name": "Fresh Bites",
+        "type": "North Indian,South Indian,Chinese,Fast Food,Juices",
+        "rating": "4.5",
+        "deliveryTime": "35mins",
+        "minCost": "Rs.100 for Two"
+    },
+    {
+        "image": "./Images/Hot3.jpg",
+        "address": "13,WES Nagar",
+        "name": "The Bowl Company",
+        "type": "Continental,Indian,Pan-Asian",
+        "rating": "4.5",
+        "deliveryTime": "20mins",
+        "minCost": "Rs.300 for Two"
+    },
+    {
+        "image": "./Images/Hot4.jpg",
+        "address": "344,CVB Nagar",
+        "name": "Hotel Tom\"s Restaurant",
+        "type": "North Indian,Biryani",
+        "rating": "3.8",
+        "deliveryTime": "50mins",
+        "minCost": "Rs.150 for Two"
+    },
+    {
+        "image": "./Images/Hot5.jpg",
+        "address": "1231,Gru Nagar",
+        "name": "Tadka Singh",
+        "type": "Punjabi,North Indian",
+        "rating": "4.1",
+        "deliveryTime": "58mins",
+        "minCost": "Rs.300 for Two"
+    },
+    {
+        "image": "./Images/Hot6.jpg",
+        "address": "007,Jamesbond Nagar",
+        "name": "Art Of Delight",
+        "type": "IceCream,Desserts",
+        "rating": "4.5",
+        "deliveryTime": "42mins",
+        "minCost": "Rs.250 for Two"
+    },
+    {
+        "image": "./Images/Hot1.jpg",
+        "address": "143,Valentine Street",
+        "name": "The Firewood Biryani",
+        "type": "Chicken biryani,Chicken 65,Chicken Tikka",
+        "rating": "3.9",
+        "deliveryTime": "25mins",
+        "minCost": "Rs.200 for Two"
+    },
+    {
+        "image": "./Images/Hot2.jpg",
+        "address": "001,Single- Nagar",
+        "name": "The Fresh Bites",
+        "type": "North Indian,South Indian,Chinese,Fast Food,Juices",
+        "rating": "4.5",
+        "deliveryTime": "35mins",
+        "minCost": "Rs.100 for Two"
+    },
+    {
+        "image": "./Images/Hot3.jpg",
+        "address": "35007,Near mental hospital",
+        "name": "The Bowls Company",
+        "type": "Continental,Indian,Pan-Asian",
+        "rating": "4.5",
+        "deliveryTime": "20mins",
+        "minCost": "Rs.300 for Two"
+    },
+    {
+        "image": "./Images/Hot4.jpg",
+        "address": "3.14,Choco Pie Street",
+        "name": "Hotel Jerry\"s Restaurant",
+        "type": "North Indian,Biryani",
+        "rating": "3.8",
+        "deliveryTime": "50mins",
+        "minCost": "Rs.150 for Two"
+    },
+    {
+        "image": "./Images/Hot5.jpg",
+        "address": "6,Sachin Nagar",
+        "name": "Mahendra Singh",
+        "type": "Punjabi,North Indian",
+        "rating": "4.1",
+        "deliveryTime": "58mins",
+        "minCost": "Rs.300 for Two"
+    },
+    {
+        "image": "./Images/Hot6.jpg",
+        "address": "0 C,Cool Captain Street",
+        "name": "Art Of Eating",
+        "type": "IceCream,Desserts",
+        "rating": "4.5",
+        "deliveryTime": "42mins",
+        "minCost": "Rs.250 for Two"
+    }
+]

@@ -1,30 +1,13 @@
 import React, { Component } from 'react';
-import 'font-awesome/css/font-awesome.min.css'
-import Grid from 'material-ui/Grid'
-import { withStyles } from 'material-ui/styles'
-import Typography from 'material-ui/Typography';
-import Button from 'material-ui/Button'
-import Dialog, {
-	DialogContent,
-	DialogTitle,
-} from 'material-ui/Dialog';
+import {
+	Grid, Button, IconButton, Dialog,
+	DialogContent, DialogTitle, withStyles
+} from 'material-ui'
 
-import IconButton from 'material-ui/IconButton';
-import Quickview from './Quickview.js'
-import Close from 'material-ui-icons/Close';
-import Hot1 from '../../Resources/Hot1.jpg'
-import Hot2 from '../../Resources/Hot2.jpg'
-import Hot3 from '../../Resources/Hot3.jpg'
-import Hot4 from '../../Resources/Hot4.jpg'
-import Hot5 from '../../Resources/Hot5.jpg'
-import Hot6 from '../../Resources/Hot6.jpg'
-import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
-import GridList, { GridListTile, } from 'material-ui/GridList';
-import SideBar from './SideBar.js'
 import { CircularProgress } from 'material-ui/Progress';
-import RestaurantDetails from './../RestaurantDetails';
-import ListMenu from './../ListMenu';
-import RestaurantCard from './../RestaurantCard';
+import RestaurantDetails from './RestaurantDetails';
+import ListMenu from './ListMenu';
+import RestaurantCard from './RestaurantCard';
 
 const MenuItems = [
 	{
@@ -49,6 +32,7 @@ const MenuItems = [
 		icon: "fa fa-credit-card"
 	}
 ];
+
 const styles = theme => ({
 	card: {
 		boxShadow: "none",
@@ -120,98 +104,117 @@ const styles = theme => ({
 
 });
 
-const SampleHotels = [{
-	image: Hot1, address: '123,XYZ Nagar',
-	name: 'Firewood Biryani',
-	type: 'Chicken biryani,Chicken 65,Chicken Tikka',
-	rating: '3.9',
-	deliveryTime: '25mins',
-	minCost: 'Rs.200 for Two',
-}, {
-	image: Hot2, address: '123,ABC Nagar',
-	name: 'Fresh Bites',
-	type: 'North Indian,South Indian,Chinese,Fast Food,Juices',
-	rating: '4.5',
-	deliveryTime: '35mins',
-	minCost: 'Rs.100 for Two',
-}, {
-	image: Hot3, address: '13,WES Nagar',
-	name: 'The Bowl Company',
-	type: 'Continental,Indian,Pan-Asian',
-	rating: '4.5',
-	deliveryTime: '20mins',
-	minCost: 'Rs.300 for Two',
-},
-{
-	image: Hot4, address: '344,CVB Nagar',
-	name: 'Hotel Tom\'s Restaurant',
-	type: 'North Indian,Biryani',
-	rating: '3.8',
-	deliveryTime: '50mins',
-	minCost: 'Rs.150 for Two',
-},
-{
-	image: Hot5, address: '1231,Gru Nagar',
-	name: 'Tadka Singh',
-	type: 'Punjabi,North Indian',
-	rating: '4.1',
-	deliveryTime: '58mins',
-	minCost: 'Rs.300 for Two',
-},
-{
-	image: Hot6, address: '007,Jamesbond Nagar',
-	name: 'Art Of Delight',
-	type: 'IceCream,Desserts',
-	rating: '4.5',
-	deliveryTime: '42mins',
-	minCost: 'Rs.250 for Two',
-}, {
-	image: Hot1, address: '143,Valentine Street',
-	name: 'The Firewood Biryani',
-	type: 'Chicken biryani,Chicken 65,Chicken Tikka',
-	rating: '3.9',
-	deliveryTime: '25mins',
-	minCost: 'Rs.200 for Two',
-}, {
-	image: Hot2, address: '001,Single- Nagar',
-	name: 'The Fresh Bites',
-	type: 'North Indian,South Indian,Chinese,Fast Food,Juices',
-	rating: '4.5',
-	deliveryTime: '35mins',
-	minCost: 'Rs.100 for Two',
-}, {
-	image: Hot3, address: '35007,Near mental hospital',
-	name: 'The Bowls Company',
-	type: 'Continental,Indian,Pan-Asian',
-	rating: '4.5',
-	deliveryTime: '20mins',
-	minCost: 'Rs.300 for Two',
-},
-{
-	image: Hot4, address: '3.14,Choco Pie Street',
-	name: 'Hotel Jerry\'s Restaurant',
-	type: 'North Indian,Biryani',
-	rating: '3.8',
-	deliveryTime: '50mins',
-	minCost: 'Rs.150 for Two',
-},
-{
-	image: Hot5, address: '6,Sachin Nagar',
-	name: 'Mahendra Singh',
-	type: 'Punjabi,North Indian',
-	rating: '4.1',
-	deliveryTime: '58mins',
-	minCost: 'Rs.300 for Two',
-},
-{
-	image: Hot6, address: '0 C,Cool Captain Street',
-	name: 'Art Of Eating',
-	type: 'IceCream,Desserts',
-	rating: '4.5',
-	deliveryTime: '42mins',
-	minCost: 'Rs.250 for Two',
-},
+const SampleHotels = [
+	{
+		"image": "./Images/Hot1.jpg",
+		"address": "123,XYZ Nagar",
+		"name": "Firewood Biryani",
+		"type": "Chicken biryani,Chicken 65,Chicken Tikka",
+		"rating": "3.9",
+		"deliveryTime": "25mins",
+		"minCost": "Rs.200 for Two"
+	},
+	{
+		"image": "./Images/Hot2.jpg",
+		"address": "123,ABC Nagar",
+		"name": "Fresh Bites",
+		"type": "North Indian,South Indian,Chinese,Fast Food,Juices",
+		"rating": "4.5",
+		"deliveryTime": "35mins",
+		"minCost": "Rs.100 for Two"
+	},
+	{
+		"image": "./Images/Hot3.jpg",
+		"address": "13,WES Nagar",
+		"name": "The Bowl Company",
+		"type": "Continental,Indian,Pan-Asian",
+		"rating": "4.5",
+		"deliveryTime": "20mins",
+		"minCost": "Rs.300 for Two"
+	},
+	{
+		"image": "./Images/Hot4.jpg",
+		"address": "344,CVB Nagar",
+		"name": "Hotel Tom\"s Restaurant",
+		"type": "North Indian,Biryani",
+		"rating": "3.8",
+		"deliveryTime": "50mins",
+		"minCost": "Rs.150 for Two"
+	},
+	{
+		"image": "./Images/Hot5.jpg",
+		"address": "1231,Gru Nagar",
+		"name": "Tadka Singh",
+		"type": "Punjabi,North Indian",
+		"rating": "4.1",
+		"deliveryTime": "58mins",
+		"minCost": "Rs.300 for Two"
+	},
+	{
+		"image": "./Images/Hot6.jpg",
+		"address": "007,Jamesbond Nagar",
+		"name": "Art Of Delight",
+		"type": "IceCream,Desserts",
+		"rating": "4.5",
+		"deliveryTime": "42mins",
+		"minCost": "Rs.250 for Two"
+	},
+	{
+		"image": "./Images/Hot1.jpg",
+		"address": "143,Valentine Street",
+		"name": "The Firewood Biryani",
+		"type": "Chicken biryani,Chicken 65,Chicken Tikka",
+		"rating": "3.9",
+		"deliveryTime": "25mins",
+		"minCost": "Rs.200 for Two"
+	},
+	{
+		"image": "./Images/Hot2.jpg",
+		"address": "001,Single- Nagar",
+		"name": "The Fresh Bites",
+		"type": "North Indian,South Indian,Chinese,Fast Food,Juices",
+		"rating": "4.5",
+		"deliveryTime": "35mins",
+		"minCost": "Rs.100 for Two"
+	},
+	{
+		"image": "./Images/Hot3.jpg",
+		"address": "35007,Near mental hospital",
+		"name": "The Bowls Company",
+		"type": "Continental,Indian,Pan-Asian",
+		"rating": "4.5",
+		"deliveryTime": "20mins",
+		"minCost": "Rs.300 for Two"
+	},
+	{
+		"image": "./Images/Hot4.jpg",
+		"address": "3.14,Choco Pie Street",
+		"name": "Hotel Jerry\"s Restaurant",
+		"type": "North Indian,Biryani",
+		"rating": "3.8",
+		"deliveryTime": "50mins",
+		"minCost": "Rs.150 for Two"
+	},
+	{
+		"image": "./Images/Hot5.jpg",
+		"address": "6,Sachin Nagar",
+		"name": "Mahendra Singh",
+		"type": "Punjabi,North Indian",
+		"rating": "4.1",
+		"deliveryTime": "58mins",
+		"minCost": "Rs.300 for Two"
+	},
+	{
+		"image": "./Images/Hot6.jpg",
+		"address": "0 C,Cool Captain Street",
+		"name": "Art Of Eating",
+		"type": "IceCream,Desserts",
+		"rating": "4.5",
+		"deliveryTime": "42mins",
+		"minCost": "Rs.250 for Two"
+	}
 ];
+
 class Restaurants extends Component {
 	constructor(props) {
 		super(props);
@@ -259,7 +262,7 @@ class Restaurants extends Component {
 
 						))}
 
-						<Dialog classes={{ paper: classes.dialogPaper }}
+						{/* <Dialog classes={{ paper: classes.dialogPaper }}
 							open={this.state.viewModalOpen}
 							onClose={this.viewClose}
 							style={{ height: "12em", marginTop: "13em", width: '100%' }}
@@ -273,9 +276,8 @@ class Restaurants extends Component {
 								</IconButton>
 							</DialogTitle>
 							<DialogContent style={{ width: '100%' }}>
-								<Quickview selected={this.state.selected} />
 							</DialogContent>
-						</Dialog>
+						</Dialog> */}
 
 					</Grid>
 				</Grid>

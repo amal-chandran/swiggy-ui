@@ -5,22 +5,19 @@ import Button from 'material-ui/Button'
 import Avatar from 'material-ui/Avatar'
 import Input from 'material-ui/Input';
 
-import ShoppingCart from 'material-ui-icons/ShoppingCart'
+
 import Hot1 from '../Resources/Hot1.jpg'
 import Hot2 from '../Resources/Hot2.jpg'
 import Hot3 from '../Resources/Hot3.jpg'
 import Hot4 from '../Resources/Hot4.jpg'
 import Hot5 from '../Resources/Hot5.jpg'
 import Hot6 from '../Resources/Hot6.jpg'
-import SwiggyIcon from '../Resources/SwiggyIcon.png'
-import TopBar from './../Components/SmallComponents/TopBar.js'
-import Typography from 'material-ui/Typography'
 
-import { RestaurantDetails, Wrapper } from './../Components';
+
+import { RestaurantDetails, Wrapper, ProductList } from './../Components';
 import { UserLayout } from './../Layouts';
 
-var header, sticky, slideIndex;
-var selected = {};
+
 const styles = theme => ({
     text: {
         fontFamily: "\"Segoe UI\",  \"Arial\", sans-serif",
@@ -212,7 +209,7 @@ class Showmenus extends Component {
             <UserLayout>
                 <Grid container>
                     <Grid style={{
-                        background: "#000",
+                        background: "#171A29",
                         color: "#fff",
                         padding: '2rem'
                     }} item xs={12} >
@@ -231,7 +228,7 @@ class Showmenus extends Component {
                                                 fontWeight: "lighter",
                                                 fontSize: "2rem"
                                             }}>{resObj.name}</div>
-                                            <div style={{ fontSize: ".8rem", paddingBottom: "10px" }}>{resObj.type}</div>
+                                            <div style={{ color: "rgb(177, 181, 202)", fontSize: "1rem", paddingBottom: "10px" }}>{resObj.type}</div>
 
                                             <div style={{
                                                 display: "flex",
@@ -284,7 +281,7 @@ class Showmenus extends Component {
                         </Wrapper>
                     </Grid>
                     <Grid item xs={12} style={{ height: 'auto', }}>
-                        <TopBar />
+                        <ProductList />
                     </Grid>
                 </Grid>
             </UserLayout>

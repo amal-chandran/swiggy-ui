@@ -8,25 +8,31 @@ import Dialog, {
 	DialogContent,
 	DialogTitle,
 } from 'material-ui/Dialog';
-import Food1 from '../../Resources/Food1.JPG'
-import Food2 from '../../Resources/Food2.jpg'
-import Food3 from '../../Resources/Food3.jpg'
-import Food4 from '../../Resources/Food4.jpg'
-import Food5 from '../../Resources/Food5.JPG'
-import Food6 from '../../Resources/Food6.jpg'
+import Food1 from '../Resources/Food1.JPG'
+import Food2 from '../Resources/Food2.jpg'
+import Food3 from '../Resources/Food3.jpg'
+import Food4 from '../Resources/Food4.jpg'
+import Food5 from '../Resources/Food5.JPG'
+import Food6 from '../Resources/Food6.jpg'
 import IconButton from 'material-ui/IconButton';
-import Quickview from './Quickview.js'
+// import Quickview from './Quickview.js'
 import Close from 'material-ui-icons/Close';
 import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
 import GridList, { GridListTile, } from 'material-ui/GridList';
-import SideTab from './SideTab.js'
 import { CircularProgress } from 'material-ui/Progress';
-import LineMenu from './../LineMenu';
-import ProductCard from './../ProductCard';
-import Wrapper from './../Wrapper';
-
+import LineMenu from './LineMenu';
+import ProductCard from './ProductCard';
+import Wrapper from './Wrapper';
+import { CartEmpty } from './../Assets'
 
 const styles = theme => ({
+	Cart: {
+		background: "url(" + CartEmpty + ")",
+		opacity: ".5",
+		backgroundRepeat: "no-repeat",
+		minHeight: "15em",
+		backgroundSize: "contain"
+	},
 	card: {
 		maxWidth: 212,
 		height: 'fit-content',
@@ -173,7 +179,15 @@ class TopBar extends Component {
 								))}
 							</Grid>
 						</Grid>
-						<Grid item xs={3} style={{ backgroundColor: 'black' }} />
+						<Grid item xs={3}  >
+							<h1 style={{ color: " #7e808c" }}>Cart Empty</h1>
+							<div className={classes.Cart}>
+
+							</div>
+							<div style={{ color: "#93959f" }}>
+								Good food is always cooking! Go ahead, order some yummy items from the menu.
+						</div>
+						</Grid>
 					</Grid>
 				</Wrapper>
 			);

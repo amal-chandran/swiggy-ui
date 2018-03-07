@@ -23,16 +23,22 @@ export default class Header extends Component {
                         <Grid item xs />
                         <Grid item xs={6}>
                             <ul className="Menu">
-                                <li>We are Hiring   </li>
-                                <li> <a href="#"> Help & Support </a></li>
-                                <li>
-                                    Get app:<a href="#">
-                                        <i className="fa fa-android HeaderAppIcon" ></i>
-                                    </a>
-                                    <a href="#">
-                                        <i className="fa fa-apple HeaderAppIcon" ></i>
-                                    </a>
-                                </li>
+                                {layout === "Normal" ? <li>We are Hiring</li> : ""}
+
+                                <li><a href="#">Help & Support</a></li>
+                                <li><a href="#">Signin</a></li>
+
+                                {layout === "Normal" ?
+                                    <li>
+                                        Get app:<a href="#">
+                                            <i className="fa fa-android HeaderAppIcon" ></i>
+                                        </a>
+                                        <a href="#">
+                                            <i className="fa fa-apple HeaderAppIcon" ></i>
+                                        </a>
+                                    </li>
+                                    : ""}
+
                             </ul>
                         </Grid>
                     </Grid>

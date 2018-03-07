@@ -22,8 +22,10 @@ class ListMenu extends Component {
         const classes = this.props.classes;
         const { active } = this.state;
         const { data } = this.props;
+        console.log(classes);
+
         return (
-            <List className={classes.List}>
+            <List>
                 {
                     data.map((SingleMenu, i) => {
                         return (
@@ -44,11 +46,7 @@ class ListMenu extends Component {
 const styles = theme => ({
     ListItem: {
         textAlign: "right",
-        "&:hover $avatar": {
-            transform: 'scale(1.2)',
-            boxShadow: '0px 0px 4px #9e9e9e',
-        },
-        "&:hover $secondary,&:hover $primary": {
+        "&:hover $primary": {
             color: '#e65100',
         },
         padding: "0 0px",
