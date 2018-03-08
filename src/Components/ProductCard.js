@@ -41,12 +41,6 @@ const styles = theme => ({
         padding: ".8rem",
         borderRadius: 0,
         paddingBottom: 1,
-        '&:hover': {
-            // border: "1px solid #d4d4d4",
-            // padding: "calc(.8rem - 1px)",
-            // paddingBottom: '0',
-            // boxShadow: "0 0 18px #e0e0e0",
-        },
     },
     media: {
         height: '14em',

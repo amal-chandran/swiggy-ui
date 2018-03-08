@@ -25,9 +25,6 @@ export default class Header extends Component {
                             <ul className="Menu">
                                 {layout === "Normal" ? <li>We are Hiring</li> : ""}
 
-                                <li><a href="#">Help & Support</a></li>
-                                <li><a href="#">Signin</a></li>
-
                                 {layout === "Normal" ?
                                     <li>
                                         Get app:<a href="#">
@@ -38,7 +35,8 @@ export default class Header extends Component {
                                         </a>
                                     </li>
                                     : ""}
-
+                                <li><a href="#">Help & Support</a></li>
+                                <li><a href="#">SignIn</a></li>
                             </ul>
                         </Grid>
                     </Grid>

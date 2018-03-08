@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Grid, Button } from 'material-ui';
 
 import { Footer, Header } from "./../Components";
-import Home from './../Resources/Home.webp';
+import Home from './../Assets/Home.webp';
 
 export default class Normal extends Component {
     render() {

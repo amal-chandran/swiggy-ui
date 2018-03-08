@@ -8,12 +8,14 @@ import Dialog, {
 	DialogContent,
 	DialogTitle,
 } from 'material-ui/Dialog';
-import Food1 from '../Resources/Food1.JPG'
-import Food2 from '../Resources/Food2.jpg'
-import Food3 from '../Resources/Food3.jpg'
-import Food4 from '../Resources/Food4.jpg'
-import Food5 from '../Resources/Food5.JPG'
-import Food6 from '../Resources/Food6.jpg'
+
+// import Food1 from '../Resources/Food1.JPG'
+// import Food2 from '../Resources/Food2.jpg'
+// import Food3 from '../Resources/Food3.jpg'
+// import Food4 from '../Resources/Food4.jpg'
+// import Food5 from '../Resources/Food5.JPG'
+// import Food6 from '../Resources/Food6.jpg'
+
 import IconButton from 'material-ui/IconButton';
 // import Quickview from './Quickview.js'
 import Close from 'material-ui-icons/Close';
@@ -103,12 +105,12 @@ const styles = theme => ({
 
 });
 const items = [
-	{ image: Food1, type: "Weekly Specials", price: 'Rs.250', name: "Cheese Burst Pizza" },
-	{ image: Food2, type: "Weekly Specials", price: 'Rs.230', name: "Spaghetti Pomodoro with Paneer Nuggets" },
-	{ image: Food3, type: "Weekly Specials", price: 'Rs.120', name: "Chicken Nuggets" },
-	{ image: Food4, type: "Weekly Specials", price: 'Rs.200', name: "Dahi Puri" },
-	{ image: Food5, type: "Weekly Specials", price: 'Rs.210', name: "Aloo tikki" },
-	{ image: Food6, type: "Weekly Specials", price: 'Rs.90', name: "Veg Biryani" }
+	{ image: "./Images/Food1.JPG", type: "Weekly Specials", price: 'Rs.250', name: "Cheese Burst Pizza" },
+	{ image: "./Images/Food2.JPG", type: "Weekly Specials", price: 'Rs.230', name: "Spaghetti Pomodoro with Paneer Nuggets" },
+	{ image: "./Images/Food3.JPG", type: "Weekly Specials", price: 'Rs.120', name: "Chicken Nuggets" },
+	{ image: "./Images/Food4.JPG", type: "Weekly Specials", price: 'Rs.200', name: "Dahi Puri" },
+	{ image: "./Images/Food5.JPG", type: "Weekly Specials", price: 'Rs.210', name: "Aloo tikki" },
+	{ image: "./Images/Food6.JPG", type: "Weekly Specials", price: 'Rs.90', name: "Veg Biryani" }
 ];
 
 const MenuItems = [

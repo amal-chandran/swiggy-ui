@@ -1,71 +1,16 @@
 import React, { Component } from 'react';
-import Grid from 'material-ui/Grid'
-import { withStyles } from 'material-ui/styles'
-import Button from 'material-ui/Button'
-import Avatar from 'material-ui/Avatar'
-import Input from 'material-ui/Input';
-
-
-import Hot1 from '../Resources/Hot1.jpg'
-import Hot2 from '../Resources/Hot2.jpg'
-import Hot3 from '../Resources/Hot3.jpg'
-import Hot4 from '../Resources/Hot4.jpg'
-import Hot5 from '../Resources/Hot5.jpg'
-import Hot6 from '../Resources/Hot6.jpg'
-
+import { withStyles, Grid } from 'material-ui'
 
 import { RestaurantDetails, Wrapper, ProductList } from './../Components';
 import { UserLayout } from './../Layouts';
 
-
 const styles = theme => ({
-    text: {
-        fontFamily: "\"Segoe UI\",  \"Arial\", sans-serif",
-        '&::selection': {
-            "color": "#f5861f",
-            "background": "#f5f5f5",
-        },
 
-    },
-    colorPrimary: {
-        backgroundColor: '#f5861f',
-        color: '#fff',
-
-    },
-    container: {
-        display: 'flex',
-        flexWrap: 'wrap',
-    },
-    formControl: {
-        margin: theme.spacing.unit,
-        minWidth: 120,
-    },
-    inputInkbar: {
-        '&:after': {
-            backgroundColor: "#f5861f",
-        },
-    },
-    active: {
-        backgroundColor: '#f5861f',
-    },
-    dot: {
-        height: "5px",
-        width: '50px',
-        margin: '0 2px',
-        display: 'inline-block',
-        transition: 'background-color 0.6s ease',
-    },
-    iconAvatar: {
-        width: '70%',
-        height: '121%',
-        left: '2em',
-        transform: 'scale(.6)',
-    },
 });
 const locations = ['Ahmedabad', 'Bangalore', 'Chennai', 'Delhi', 'Gurgaon', 'Hyderabad', 'Kolkata', 'Mumbai', 'Pune',];
 
 const SampleHotels = [{
-    image: Hot1, address: '123,XYZ Nagar',
+    image: "./Images/Hot1.jpg", address: '123,XYZ Nagar',
     name: 'Firewood Biryani',
     type: 'Chicken biryani,Chicken 65,Chicken Tikka',
     rating: '3.9',
@@ -74,7 +19,7 @@ const SampleHotels = [{
     dseliveryTime: '25mins',
     minCost: 'Rs.200 for Two',
 }, {
-    image: Hot2, address: '123,ABC Nagar',
+    image: "./Images/Hot2.jpg", address: '123,ABC Nagar',
     name: 'Fresh Bites',
     type: 'North Indian,South Indian,Chinese,Fast Food,Juices',
     rating: '4.5',
@@ -83,7 +28,7 @@ const SampleHotels = [{
     deliveryTime: '35mins',
     minCost: 'Rs.100 for Two',
 }, {
-    image: Hot3, address: '13,WES Nagar',
+    image: "./Images/Hot3.jpg", address: '13,WES Nagar',
     name: 'The Bowl Company',
     type: 'Continental,Indian,Pan-Asian',
     rating: '4.5',
@@ -92,7 +37,7 @@ const SampleHotels = [{
     minCost: 'Rs.300 for Two',
 },
 {
-    image: Hot4, address: '344,CVB Nagar',
+    image: "./Images/Hot4.jpg", address: '344,CVB Nagar',
     name: 'Hotel Tom\'s Restaurant',
     type: 'North Indian,Biryani',
     rating: '3.8',
@@ -101,7 +46,7 @@ const SampleHotels = [{
     minCost: 'Rs.150 for Two',
 },
 {
-    image: Hot5, address: '1231,Gru Nagar',
+    image: "./Images/Hot5.jpg", address: '1231,Gru Nagar',
     name: 'Tadka Singh',
     type: 'Punjabi,North Indian',
     closingTime: '8.00 am', rating: '4.1',
@@ -110,7 +55,7 @@ const SampleHotels = [{
     minCost: 'Rs.300 for Two',
 },
 {
-    image: Hot6, address: '007,Jamesbond Nagar',
+    image: "./Images/Hot6.jpg", address: '007,Jamesbond Nagar',
     name: 'Art Of Delight',
     type: 'IceCream,Desserts',
     closingTime: '8.00 am', rating: '4.5',
@@ -118,7 +63,7 @@ const SampleHotels = [{
     openingTime: '10 am',
     minCost: 'Rs.250 for Two',
 }, {
-    image: Hot1, address: '143,Valentine Street',
+    image: "./Images/Hot1.jpg", address: '143,Valentine Street',
     name: 'The Firewood Biryani',
     type: 'Chicken biryani,Chicken 65,Chicken Tikka',
     closingTime: '8.00 am', rating: '3.9',
@@ -126,7 +71,7 @@ const SampleHotels = [{
     openingTime: '11.30 am',
     minCost: 'Rs.200 for Two',
 }, {
-    image: Hot2, address: '001,Single- Nagar',
+    image: "./Images/Hot2.jpg", address: '001,Single- Nagar',
     name: 'The Fresh Bites',
     type: 'North Indian,South Indian,Chinese,Fast Food,Juices',
     closingTime: '8.00 am', rating: '4.5',
@@ -134,7 +79,7 @@ const SampleHotels = [{
     openingTime: '7.30 am',
     minCost: 'Rs.100 for Two',
 }, {
-    image: Hot3, address: '35007,Near mental hospital',
+    image: "./Images/Hot3.jpg", address: '35007,Near mental hospital',
     name: 'The Bowls Company',
     type: 'Continental,Indian,Pan-Asian',
     rating: '4.5',
@@ -143,7 +88,7 @@ const SampleHotels = [{
     minCost: 'Rs.300 for Two',
 },
 {
-    image: Hot4, address: '3.14,Choco Pie Street',
+    image: "./Images/Hot4.jpg", address: '3.14,Choco Pie Street',
     name: 'Hotel Jerry\'s Restaurant',
     type: 'North Indian,Biryani',
     closingTime: '8.00 am', rating: '3.8',
@@ -152,7 +97,7 @@ const SampleHotels = [{
     minCost: 'Rs.150 for Two',
 },
 {
-    image: Hot5, address: '6,Sachin Nagar',
+    image: "./Images/Hot5.jpg", address: '6,Sachin Nagar',
     name: 'Mahendra Singh',
     type: 'Punjabi,North Indian',
     closingTime: '8.00 am', rating: '4.1',
@@ -161,7 +106,7 @@ const SampleHotels = [{
     minCost: 'Rs.300 for Two',
 },
 {
-    image: Hot6, address: '0 C,Cool Captain Street',
+    image: "./Images/Hot6.jpg", address: '0 C,Cool Captain Street',
     name: 'Art Of Eating',
     type: 'IceCream,Desserts',
     closingTime: '8.00 am', rating: '4.5',
@@ -173,7 +118,7 @@ const SampleHotels = [{
 
 
 
-class Showmenus extends Component {
+class RestaurantMenu extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -290,5 +235,5 @@ class Showmenus extends Component {
     }
 }
 
-export default withStyles(styles)(Showmenus)
+export default withStyles(styles)(RestaurantMenu)
 
