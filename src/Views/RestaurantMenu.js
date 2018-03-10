@@ -136,9 +136,8 @@ class RestaurantMenu extends Component {
 
     };
     componentDidMount() {
-        var restaurantName = window.location.pathname.split('/').slice(-1)[0];
-        var i;
-        var restaurant = decodeURI(restaurantName);
+        console.log(this.props.matchs);
+        let i, restaurant = "Firewood Biryani";
         for (i = 0; i < SampleHotels.length; i++) {
             if (SampleHotels[i].name === restaurant)
                 break;

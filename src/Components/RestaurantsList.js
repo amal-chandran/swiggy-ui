@@ -11,10 +11,6 @@ import RestaurantCard from './RestaurantCard';
 
 const MenuItems = [
 	{
-		name: "All Restaurants",
-		subname: "100 OPTIONS",
-		icon: "fa fa-arrow-circle-right"
-	}, {
 		name: "Popular",
 		subname: "31 OPTIONS",
 		icon: "fa fa-fire"
@@ -30,6 +26,10 @@ const MenuItems = [
 		name: "Pocket Friendly",
 		subname: "5 OPTIONS",
 		icon: "fa fa-credit-card"
+	}, {
+		name: "All Restaurants",
+		subname: "100 OPTIONS",
+		icon: "fa fa-arrow-circle-right"
 	}
 ];
 
@@ -111,7 +111,7 @@ const SampleHotels = [
 		"name": "Firewood Biryani",
 		"type": "Chicken biryani,Chicken 65,Chicken Tikka",
 		"rating": "3.9",
-		"deliveryTime": "25mins",
+		"deliveryTime": "25 MINS",
 		"minCost": "Rs.200 for Two"
 	},
 	{
@@ -120,7 +120,7 @@ const SampleHotels = [
 		"name": "Fresh Bites",
 		"type": "North Indian,South Indian,Chinese,Fast Food,Juices",
 		"rating": "4.5",
-		"deliveryTime": "35mins",
+		"deliveryTime": "35 MINS",
 		"minCost": "Rs.100 for Two"
 	},
 	{
@@ -129,7 +129,7 @@ const SampleHotels = [
 		"name": "The Bowl Company",
 		"type": "Continental,Indian,Pan-Asian",
 		"rating": "4.5",
-		"deliveryTime": "20mins",
+		"deliveryTime": "20 MINS",
 		"minCost": "Rs.300 for Two"
 	},
 	{
@@ -138,7 +138,7 @@ const SampleHotels = [
 		"name": "Hotel Tom\"s Restaurant",
 		"type": "North Indian,Biryani",
 		"rating": "3.8",
-		"deliveryTime": "50mins",
+		"deliveryTime": "50 MINS",
 		"minCost": "Rs.150 for Two"
 	},
 	{
@@ -147,7 +147,7 @@ const SampleHotels = [
 		"name": "Tadka Singh",
 		"type": "Punjabi,North Indian",
 		"rating": "4.1",
-		"deliveryTime": "58mins",
+		"deliveryTime": "58 MINS",
 		"minCost": "Rs.300 for Two"
 	},
 	{
@@ -156,7 +156,7 @@ const SampleHotels = [
 		"name": "Art Of Delight",
 		"type": "IceCream,Desserts",
 		"rating": "4.5",
-		"deliveryTime": "42mins",
+		"deliveryTime": "42 MINS",
 		"minCost": "Rs.250 for Two"
 	},
 	{
@@ -165,7 +165,7 @@ const SampleHotels = [
 		"name": "The Firewood Biryani",
 		"type": "Chicken biryani,Chicken 65,Chicken Tikka",
 		"rating": "3.9",
-		"deliveryTime": "25mins",
+		"deliveryTime": "25 MINS",
 		"minCost": "Rs.200 for Two"
 	},
 	{
@@ -174,7 +174,7 @@ const SampleHotels = [
 		"name": "The Fresh Bites",
 		"type": "North Indian,South Indian,Chinese,Fast Food,Juices",
 		"rating": "4.5",
-		"deliveryTime": "35mins",
+		"deliveryTime": "35 MINS",
 		"minCost": "Rs.100 for Two"
 	},
 	{
@@ -183,7 +183,7 @@ const SampleHotels = [
 		"name": "The Bowls Company",
 		"type": "Continental,Indian,Pan-Asian",
 		"rating": "4.5",
-		"deliveryTime": "20mins",
+		"deliveryTime": "20 MINS",
 		"minCost": "Rs.300 for Two"
 	},
 	{
@@ -192,7 +192,7 @@ const SampleHotels = [
 		"name": "Hotel Jerry\"s Restaurant",
 		"type": "North Indian,Biryani",
 		"rating": "3.8",
-		"deliveryTime": "50mins",
+		"deliveryTime": "50 MINS",
 		"minCost": "Rs.150 for Two"
 	},
 	{
@@ -201,7 +201,7 @@ const SampleHotels = [
 		"name": "Mahendra Singh",
 		"type": "Punjabi,North Indian",
 		"rating": "4.1",
-		"deliveryTime": "58mins",
+		"deliveryTime": "58 MINS",
 		"minCost": "Rs.300 for Two"
 	},
 	{
@@ -210,7 +210,7 @@ const SampleHotels = [
 		"name": "Art Of Eating",
 		"type": "IceCream,Desserts",
 		"rating": "4.5",
-		"deliveryTime": "42mins",
+		"deliveryTime": "42 MINS",
 		"minCost": "Rs.250 for Two"
 	}
 ];
@@ -252,6 +252,11 @@ class Restaurants extends Component {
 				</Grid>
 				<Grid item xs={8}>
 					<Grid container spacing={8}>
+						<Grid item xs={12} style={{ height: 'fit-content' }}>
+							<h1 style={{ paddingLeft: "1rem" }}>
+								Popular
+							</h1>
+						</Grid>
 
 						{SampleHotels.map((sample, i) => (
 							<Grid item key={i} xs={4} style={{ height: 'fit-content' }}>

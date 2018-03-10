@@ -13,7 +13,7 @@ export default (props) => {
                 alignItems: "center",
                 justifyContent: "space-between",
                 color: '#535665',
-                fontSize: ".8rem"
+                fontSize: ".7rem"
             }}>
 
                 <div style={{
@@ -28,13 +28,13 @@ export default (props) => {
                 <div>
                     &bull;
                                                 </div>
-                <div>
+                <div style={{ textTransform: "uppercase" }}>
                     {props.deliveryTime}
                 </div>
                 <div>
                     &bull;
                                                 </div>
-                <div>
+                <div style={{ textTransform: "uppercase" }}>
                     {props.minCost}
                 </div>
             </div>

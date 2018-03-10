@@ -24,17 +24,10 @@ import GridList, { GridListTile, } from 'material-ui/GridList';
 import { CircularProgress } from 'material-ui/Progress';
 import LineMenu from './LineMenu';
 import ProductCard from './ProductCard';
+import Cart from './Cart';
 import Wrapper from './Wrapper';
-import { CartEmpty } from './../Assets'
 
 const styles = theme => ({
-	Cart: {
-		background: "url(" + CartEmpty + ")",
-		opacity: ".5",
-		backgroundRepeat: "no-repeat",
-		minHeight: "15em",
-		backgroundSize: "contain"
-	},
 	card: {
 		maxWidth: 212,
 		height: 'fit-content',
@@ -105,12 +98,12 @@ const styles = theme => ({
 
 });
 const items = [
-	{ image: "./Images/Food1.JPG", type: "Weekly Specials", price: 'Rs.250', name: "Cheese Burst Pizza" },
-	{ image: "./Images/Food2.JPG", type: "Weekly Specials", price: 'Rs.230', name: "Spaghetti Pomodoro with Paneer Nuggets" },
-	{ image: "./Images/Food3.JPG", type: "Weekly Specials", price: 'Rs.120', name: "Chicken Nuggets" },
-	{ image: "./Images/Food4.JPG", type: "Weekly Specials", price: 'Rs.200', name: "Dahi Puri" },
-	{ image: "./Images/Food5.JPG", type: "Weekly Specials", price: 'Rs.210', name: "Aloo tikki" },
-	{ image: "./Images/Food6.JPG", type: "Weekly Specials", price: 'Rs.90', name: "Veg Biryani" }
+	{ image: "./Images/Food1.jpg", type: "Weekly Specials", price: 'Rs.250', name: "Cheese Burst Pizza" },
+	{ image: "./Images/Food2.jpg", type: "Weekly Specials", price: 'Rs.230', name: "Spaghetti Pomodoro with Paneer Nuggets" },
+	{ image: "./Images/Food3.jpg", type: "Weekly Specials", price: 'Rs.120', name: "Chicken Nuggets" },
+	{ image: "./Images/Food4.jpg", type: "Weekly Specials", price: 'Rs.200', name: "Dahi Puri" },
+	{ image: "./Images/Food5.jpg", type: "Weekly Specials", price: 'Rs.210', name: "Aloo tikki" },
+	{ image: "./Images/Food6.jpg", type: "Weekly Specials", price: 'Rs.90', name: "Veg Biryani" }
 ];
 
 const MenuItems = [
@@ -131,7 +124,7 @@ const MenuItems = [
 		icon: "fa fa-beer"
 	}
 ];
-class TopBar extends Component {
+class ProductList extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -151,7 +144,7 @@ class TopBar extends Component {
 		this.setState({ viewModalOpen: false, selected: {} });
 	}
 	render() {
-		const classes = this.props.classes;
+		const { classes } = this.props;
 		if (this.state.loading) {
 			return (
 				<div style={{ textAlign: 'center', }}>
@@ -181,14 +174,8 @@ class TopBar extends Component {
 								))}
 							</Grid>
 						</Grid>
-						<Grid item xs={3}  >
-							<h1 style={{ color: " #7e808c" }}>Cart Empty</h1>
-							<div className={classes.Cart}>
-
-							</div>
-							<div style={{ color: "#93959f" }}>
-								Good food is always cooking! Go ahead, order some yummy items from the menu.
-						</div>
+						<Grid item xs={3}>
+							<Cart />
 						</Grid>
 					</Grid>
 				</Wrapper>
@@ -197,5 +184,5 @@ class TopBar extends Component {
 	}
 }
 
-export default withStyles(styles)(TopBar)
+export default withStyles(styles)(ProductList);
 

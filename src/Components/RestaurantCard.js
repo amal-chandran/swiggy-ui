@@ -18,7 +18,7 @@ const RestaurantCard = (props) => {
                 <RestaurantDetails {...data} />
             </CardContent>
             <CardActions className={classes.CardActions} >
-                <Button size="small" onClick={() => props.viewOpen(data)} style={{ color: '#5d8ed5' }} >
+                <Button classes={{ root: classes.button }} disableRipple size="small" onClick={() => props.viewOpen(data)} style={{}} >
                     Quick View
 											</Button>
             </CardActions>
@@ -53,16 +53,19 @@ const styles = theme => ({
         borderTop: '0.5px solid lightgrey'
     },
     media: {
-        height: '14em',
+        minHeight: '14em',
     },
     cardContent: {
         padding: "0rem",
         paddingTop: "1rem",
-        height: '6.5em',
+        paddingBottom: ".4rem"
     },
     button: {
-        margin: '8px 0px 0px 4px',
-        left: '4em',
+        color: '#5d8ed5',
+        fontWeight: 'bold',
+        "&:hover": {
+            background: "none"
+        }
     }
 });
 export default withStyles(styles)(RestaurantCard);

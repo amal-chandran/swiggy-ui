@@ -5,6 +5,7 @@ import RestaurantsList from "./RestaurantsList";
 import CheckOutSteps from "./CheckOutSteps.js";
 import ProductList from "./ProductList";
 import ListMenu from "./ListMenu";
+import Cart from "./Cart";
 import Wrapper from "./Wrapper";
 import Footer from "./Footer";
 
@@ -13,5 +14,6 @@ export {
     Wrapper, Footer, About,
     RestaurantDetails,
     RestaurantsList,
-    ProductList, CheckOutSteps
+    ProductList, CheckOutSteps,
+    Cart
 };
