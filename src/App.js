@@ -16,6 +16,14 @@ import jssCamelCase from "jss-camel-case";
 import JssProvider from 'react-jss/lib/JssProvider';
 import { createGenerateClassName, jssPreset } from 'material-ui/styles';
 
+import { store, history } from "./Helper";
+import { Provider, connect } from "react-redux";
+import { PrivateRoute, Notifi } from "./Components";
+import { ConnectedRouter } from 'react-router-redux';
+import { LoginSignup } from "./Components";
+import { action as toggleMenu } from 'redux-burger-menu';
+
+
 // Configure JSS
 const jss = create({ plugins: [...jssPreset().plugins, jssExtend(), jssCamelCase()] });
 
@@ -25,19 +33,23 @@ class App extends Component {
     render() {
         return (
             <JssProvider jss={jss} generateClassName={generateClassName}>
-                <HashRouter>
-                    <div>
-                        <Switch>
-                            <Route exact path="/" component={Home} />
-                            <Route path="/restaurantslist" component={Restaurants} />
-                            <Route path="/restaurantmenu" component={RestaurantMenu} />
-                            <Route path="/checkout" component={Checkout} />
-                            {/* <Route path="/show" component={Showrestaurants} /> */}
-                            {/* <Route path="/restaurants" component={Showmenus} /> */}
-                            {/* <Route path="/" component={() => <Welcome Name={'Siva'} />} /> */}
-                        </Switch>
-                    </div>
-                </HashRouter>
+                <Provider store={store}>
+                    <ConnectedRouter history={history}>
+                        <div>
+                            <LoginSignup />
+                            <Notifi />
+                            <Switch>
+                                <Route exact path="/" component={Home} />
+                                <Route path="/:location/restaurantslist" component={Restaurants} />
+                                <Route path="/restaurantmenu" component={RestaurantMenu} />
+                                <Route path="/checkout" component={Checkout} />
+                                {/* <Route path="/show" component={Showrestaurants} /> */}
+                                {/* <Route path="/restaurants" component={Showmenus} /> */}
+                                {/* <Route path="/" component={() => <Welcome Name={'Siva'} />} /> */}
+                            </Switch>
+                        </div>
+                    </ConnectedRouter>
+                </Provider >
             </JssProvider>
 
         );

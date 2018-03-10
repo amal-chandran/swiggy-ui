@@ -7,7 +7,7 @@ import Select from 'react-select';
 import { Normal } from "./../Layouts";
 // import About from './../Components/SmallComponents/About';
 
-class Welcome extends Component {
+class Home extends Component {
 
     render() {
         const classes = this.props.classes;
@@ -16,19 +16,8 @@ class Welcome extends Component {
                 <Grid style={{ height: "30rem" }} container alignItems="center" justify="center">
                     <Grid item>
                         <h1 style={{ textAlign: "center", color: "#fff", textShadow: "1px 1px 4px rgba(0,0,0,.8)", fontWeight: "50" }}>Order from restaurants near you</h1>
-                        <div style={{ display: "flex", border: "1px solid rgb(252, 128, 25)" }}>
-                            <SelectLocations style={{ border: "0px solid gray", borderRadius: "0px" }} wrapperStyle={{ flexGrow: '1' }} />
-                            {/* If your location is unavailable please select your nearest city */}
-
-                            <Button
-
-                                style={{
-                                    backgroundColor: "#fc8019", color: "white", padding: "0 1rem",
-                                    borderRadius: "0px", fontWeight: "bold", fontSize: "1rem"
-                                }}>
-                                FIND FOOD
-                        </Button>
-                        </div>
+                        <SelectLocations />
+                        {/* If your location is unavailable please select your nearest city */}
                     </Grid>
                 </Grid>
             </Normal>
@@ -36,9 +25,7 @@ class Welcome extends Component {
     }
 }
 
-export default Welcome;
-
-
+export default Home;
 
 class SelectLocations extends React.Component {
     state = {
@@ -68,14 +55,21 @@ class SelectLocations extends React.Component {
         const value = selectedOption && selectedOption.value;
 
         return (
-            <Select
-                {...this.props}
-                name="form-field-name"
-                value={value}
-                placeholder="Select your location ..."
-                onChange={this.handleChange}
-                options={this.locations}
-            />
+            <div style={{ display: "flex", border: "1px solid rgb(252, 128, 25)" }}>
+                <Select
+                    style={{ border: "0px solid gray", borderRadius: "0px" }}
+                    wrapperStyle={{ flexGrow: '1' }}
+                    name="form-field-name"
+                    value={value}
+                    placeholder="Select your location ..."
+                    onChange={this.handleChange}
+                    options={this.locations}
+                />
+                <Button style={{
+                    backgroundColor: "#fc8019", color: "white", padding: "0 1rem",
+                    borderRadius: "0px", fontWeight: "bold", fontSize: "1rem"
+                }}> FIND FOOD </Button>
+            </div>
         );
     }
 }

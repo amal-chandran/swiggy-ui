@@ -1,15 +1,18 @@
 import React, { Component } from "react";
+import { Grid } from "material-ui";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { action as toggleMenu } from 'redux-burger-menu';
+
 import Wrapper from "./Wrapper";
 import { SwiggyLogo } from "./../Assets";
-import { Grid } from "material-ui";
 
-export default class Header extends Component {
+class Header extends Component {
     static defaultProps = {
         layout: "Normal"
     }
     render() {
-        const { layout } = this.props;
-
+        const { layout, actions, authLogin } = this.props;
         let HeaderClass = "Header "
         HeaderClass += layout !== "Normal" ? " HeaderRised " : "";
 
@@ -36,7 +39,11 @@ export default class Header extends Component {
                                     </li>
                                     : ""}
                                 <li><a href="#">Help & Support</a></li>
-                                <li><a href="#">SignIn</a></li>
+                                {
+                                    !authLogin ? <li><a onClick={() => { actions.toggleMenu(true, "LoginSignup") }} href="#">SignIn</a></li>
+                                        :
+                                        ""
+                                }
                             </ul>
                         </Grid>
                     </Grid>
@@ -45,3 +52,19 @@ export default class Header extends Component {
         );
     }
 };
+
+const mapStateToProps = (state) => {
+    const { userAuth } = state;
+    return {
+        authLogin: userAuth.authLogin
+    }
+};
+const mapDispatchToProps = (dispatch) => {
+    return {
+        actions: bindActionCreators({
+            toggleMenu: toggleMenu
+        }, dispatch)
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

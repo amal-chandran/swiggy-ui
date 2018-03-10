@@ -1,0 +1,8 @@
+{
+    "url": {
+        "login": "https://auth.akin49.hasura-app.io/v1/login",
+        "signup": "https://auth.akin49.hasura-app.io/v1/signup",
+        "logout": "https://auth.akin49.hasura-app.io/v1/user/logout",
+        "upload": "https://app.akin49.hasura-app.io/uploadfile"
+    }
+}
