@@ -6,7 +6,7 @@ import { Wrapper, RestaurantsList } from './../Components';
 
 class Restaurants extends Component {
     render() {
-        console.log(this.props.match.params.location)
+        // console.log(this.props.match.params.location)
         return (
             <UserLayout>
                 <Wrapper>

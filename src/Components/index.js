@@ -7,8 +7,11 @@ import ProductList from "./ProductList";
 import ListMenu from "./ListMenu";
 import Cart from "./Cart";
 import Notifi from "./Notifi";
-import LoginSignup from "./LoginSignup";
+import LoginSignup from "./SideBars/LoginSignup";
+import LocationManage from "./SideBars/LocationManage";
+import SelectLocations from "./SelectLocations";
 import PrivateRoute from "./PrivateRoute";
+import Router from "./Service/Router";
 import Wrapper from "./Wrapper";
 import Footer from "./Footer";
 
@@ -19,5 +22,6 @@ export {
     RestaurantsList,
     ProductList, CheckOutSteps,
     Cart, Notifi, PrivateRoute,
-    LoginSignup
+    LoginSignup, Router,
+    SelectLocations, LocationManage
 };

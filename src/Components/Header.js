@@ -5,23 +5,40 @@ import { connect } from "react-redux";
 import { action as toggleMenu } from 'redux-burger-menu';
 
 import Wrapper from "./Wrapper";
-import { SwiggyLogo } from "./../Assets";
+import { SwiggyLogo, SwiggySymbol } from "./../Assets";
 
 class Header extends Component {
     static defaultProps = {
         layout: "Normal"
     }
     render() {
-        const { layout, actions, authLogin } = this.props;
+        const { layout, actions, authLogin, location } = this.props;
         let HeaderClass = "Header "
         HeaderClass += layout !== "Normal" ? " HeaderRised " : "";
+
 
         return (
             <div className={HeaderClass}>
                 <Wrapper>
                     <Grid container direction="row" justify="space-between" alignItems="center">
                         <Grid item xs={2}>
-                            <img className="HeaderLogo" src={SwiggyLogo} alt="logo" />
+                            <div style={{ display: "flex", alignItems: "center" }}>
+                                {
+                                    layout === "Normal" ?
+                                        <img className="HeaderLogo" src={SwiggyLogo} alt="logo" />
+                                        :
+                                        <img className="HeaderLogo" src={SwiggySymbol} alt="logo" />
+                                }
+                                <div style={{
+                                    marginLeft: "1rem",
+                                    fontWeight: "bold",
+                                    color: "#3d4152"
+                                }}>
+                                    <a onClick={() => { actions.toggleMenu(true, "LocationManage"); }}>
+                                        {location}
+                                    </a>
+                                </div>
+                            </div>
                         </Grid>
                         <Grid item xs />
                         <Grid item xs={6}>
@@ -54,9 +71,11 @@ class Header extends Component {
 };
 
 const mapStateToProps = (state) => {
-    const { userAuth } = state;
+    const { userAuth, localState } = state;
     return {
-        authLogin: userAuth.authLogin
+        authLogin: userAuth.authLogin,
+        location: localState.location
+
     }
 };
 const mapDispatchToProps = (dispatch) => {

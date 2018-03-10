@@ -1,6 +1,7 @@
 import localTypes from './localTypes';
+import { push } from 'react-router-redux';
 
-export const setLoction = (location) => {
+export const setLocation = (location) => {
     return {
         type: localTypes.SET_LOCATION,
         payload: {
