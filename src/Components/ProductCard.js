@@ -11,7 +11,7 @@ const RestaurantCard = (props) => {
         <Card className={classes.card}>
             <CardMedia
                 className={classes.media}
-                image={data.image}
+                image={data.imageCover}
                 title={data.name}
             />
             <CardContent className={classes.cardContent}>

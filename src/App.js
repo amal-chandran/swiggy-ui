@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import 'font-awesome/css/font-awesome.min.css'
-import './App.css';
 import 'react-select/dist/react-select.css';
+import 'muicss/dist/css/mui-noglobals.min.css';
+import './App.css';
 
 // import Showrestaurants from './Components/Showrestaurants';
 // import Showmenus from './Components/Showmenus';

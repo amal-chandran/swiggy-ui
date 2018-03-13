@@ -13,7 +13,7 @@ export default class LoactionRouter extends Component {
         return (
             <Switch>
                 <Route path={(this.makePath("/restaurantslist"))} component={Restaurants} />
-                <Route path={(this.makePath("/restaurantmenu"))} component={RestaurantMenu} />
+                <Route path={(this.makePath("/:restaurant"))} component={RestaurantMenu} />
                 <Route path={(this.makePath("/"))} render={() => (<Redirect to={(this.makePath("/restaurantslist"))} />)} />
             </Switch>
         );

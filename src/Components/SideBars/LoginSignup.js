@@ -8,6 +8,7 @@ import { decorator as reduxBurgerMenu } from 'redux-burger-menu';
 
 import { Auth } from "./../../Resource";
 import { authActions, notifiActions } from "./../../Actions";
+import AuthForm from "./../FormComponents/AuthForm";
 
 const MenuLoginSignup = reduxBurgerMenu(Menu, "LoginSignup");
 
@@ -72,6 +73,10 @@ class LoginSignup extends Component {
                             }
                         </Grid>
                         <Grid item xs={12}>
+                            <AuthForm />
+                        </Grid>
+
+                        {/* <Grid item xs={12}>
 
                             <div style={{ display: "flex", flexDirection: "column" }}>
                                 <div className={classes.IpputContain}>
@@ -81,12 +86,19 @@ class LoginSignup extends Component {
                                     <TextField InputProps={{ disableUnderline: true }} type="password" name="password" onChange={this.onHandleInput} fullWidth placeholder="Password" />
                                 </div>
                                 {
-                                    page === "login" ?
-                                        ""
-                                        :
-                                        <div className={classes.IpputContain}>
-                                            <TextField InputProps={{ disableUnderline: true }} type="password" name="repassword" onChange={this.onHandleInput} fullWidth placeholder="Confirm Password" />
-                                        </div>
+                                    page === "signup" ?
+                                       [
+                                            <div className={classes.IpputContain}>
+                                                <TextField InputProps={{ disableUnderline: true }} type="password" name="repassword" onChange={this.onHandleInput} fullWidth placeholder="Confirm Password" />
+                                            </div>,
+                                            <div className={classes.IpputContain}>
+                                                <TextField InputProps={{ disableUnderline: true }} type="text" name="name" onChange={this.onHandleInput} fullWidth placeholder="Name" />
+                                            </div>,
+                                            <div className={classes.IpputContain}>
+                                                <TextField InputProps={{ disableUnderline: true }} type="text" name="mobile" onChange={this.onHandleInput} fullWidth placeholder="Phone No" />
+                                            </div>
+                                       ]
+                                        : ""
 
                                 }
                             </div>
@@ -101,7 +113,7 @@ class LoginSignup extends Component {
                                     :
                                     <Button fullWidth className={classes.TriggerButton} disabled={this.props.isCreating} onClick={this.onSignupHandle}>Sign up</Button>
                             }
-                        </Grid>
+                        </Grid> */}
                         <Grid item xs={12}>
                             {
                                 page !== "login" ?
@@ -145,10 +157,6 @@ const styles = {
         fontSize: "30px",
         color: "#282C3F",
         marginBottom: "4px"
-    },
-    TriggerButton: {
-        backgroundColor: "#fc8019", color: "white", padding: "0 1rem",
-        borderRadius: "0px", fontWeight: "bold", fontSize: "1rem"
     },
     PageChangeContain: {
         color: "#000",

@@ -4,21 +4,12 @@ import Select from 'react-select';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { localActions } from "./../Actions";
+import { Location } from './../Resource';
 
 class SelectLocations extends React.Component {
     state = {
         selectedOption: '',
     }
-    locations = [{ value: 'Ahmedabad', label: 'Ahmedabad' },
-    { value: 'Bangalore', label: 'Bangalore' },
-    { value: 'Chennai', label: 'Chennai' },
-    { value: 'Delhi', label: 'Delhi' },
-    { value: 'Gurgaon', label: 'Gurgaon' },
-    { value: 'Hyderabad', label: 'Hyderabad' },
-    { value: 'Kolkata', label: 'Kolkata' },
-    { value: 'Mumbai', label: 'Mumbai' },
-    { value: 'Pune', label: 'Pune' }];
-
 
     handleChange = (selectedOption) => {
         try {
@@ -35,10 +26,17 @@ class SelectLocations extends React.Component {
         }
     }
 
+    componentWillMount() {
+        this.props.actions.getLocations();
+    }
 
+    componentWillReceiveProps
     render() {
         const { selectedOption } = this.state;
         const value = selectedOption && selectedOption.value;
+        const { item } = this.props.location;
+        let Items = item === null ? [] : item;
+        Items = Items.map((data) => { return { value: data.name, label: data.name } });
 
         return (
             <div style={{ display: "flex", border: "1px solid rgb(252, 128, 25)" }}>
@@ -49,7 +47,7 @@ class SelectLocations extends React.Component {
                     value={value}
                     placeholder="Select your location ..."
                     onChange={this.handleChange}
-                    options={this.locations}
+                    options={Items}
                 />
                 <Button
                     onClick={this.handleFindFood}
@@ -62,13 +60,24 @@ class SelectLocations extends React.Component {
     }
 }
 
+const mapStateToProps = (state) => {
+    const { location } = state;
+    return {
+        location
+    }
+};
+
 const mapDispatchToProps = (dispatch) => {
     const setLocation = localActions.setLocation;
+    const { getLocations } = Location;
     return {
         actions: bindActionCreators({
-            setLocation
+            setLocation, getLocations
         }, dispatch)
     };
 };
 
-export default connect(() => ({}), mapDispatchToProps)(SelectLocations);
+
+export default connect(mapStateToProps, mapDispatchToProps)(SelectLocations);
+
+

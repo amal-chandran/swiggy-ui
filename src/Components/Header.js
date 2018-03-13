@@ -15,7 +15,12 @@ class Header extends Component {
         const { layout, actions, authLogin, location } = this.props;
         let HeaderClass = "Header "
         HeaderClass += layout !== "Normal" ? " HeaderRised " : "";
+        let UserProfileName = "";
+        try {
+            UserProfileName = this.props.profile.item[0].name;
+        } catch (e) {
 
+        }
 
         return (
             <div className={HeaderClass}>
@@ -59,7 +64,7 @@ class Header extends Component {
                                 {
                                     !authLogin ? <li><a onClick={() => { actions.toggleMenu(true, "LoginSignup") }} href="#">SignIn</a></li>
                                         :
-                                        ""
+                                        <li><i className="fa fa-user HeaderAppIcon" ></i>{" "}{UserProfileName}</li>
                                 }
                             </ul>
                         </Grid>
@@ -71,11 +76,11 @@ class Header extends Component {
 };
 
 const mapStateToProps = (state) => {
-    const { userAuth, localState } = state;
+    const { userAuth, localState, profile } = state;
     return {
         authLogin: userAuth.authLogin,
-        location: localState.location
-
+        location: localState.location,
+        profile
     }
 };
 const mapDispatchToProps = (dispatch) => {

@@ -29,13 +29,13 @@ export default (props) => {
                     &bull;
                                                 </div>
                 <div style={{ textTransform: "uppercase" }}>
-                    {props.deliveryTime}
+                    {props.servetime}
                 </div>
                 <div>
                     &bull;
                                                 </div>
                 <div style={{ textTransform: "uppercase" }}>
-                    {props.minCost}
+                    {props.costTwo}
                 </div>
             </div>
 

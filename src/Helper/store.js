@@ -6,11 +6,12 @@ import { reducer as burgerMenu } from 'redux-burger-menu';
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage' // defaults to localStorage for web and AsyncStorage for react-native
 import { action as toggleMenu } from 'redux-burger-menu';
+import { createForms } from 'react-redux-form';
 
 import history from "./history";
 import { authActions, notifiActions } from "./../Actions";
 import { authReducer, notifiReducer, localStateReducer } from "./../Reducers";
-import { Auth } from "./../Resource";
+import { Auth, Profile, Location, Restaurants } from "./../Resource";
 
 const customMiddleWare = store => next => action => {
 
@@ -18,8 +19,18 @@ const customMiddleWare = store => next => action => {
         localStorage.setItem("authData", JSON.stringify(action.body));
         store.dispatch(authActions.authLogin(action.body));
         // store.dispatch(push("/home"));
+        const { hasura_id } = action.body;
+
+        store.dispatch(Profile.getProfile(hasura_id));
         store.dispatch(toggleMenu(false, "LoginSignup"));
     } else if (action.type === "@@resource/AUTH/SIGNUP" && action.status === "resolved") {
+        localStorage.setItem("authData", JSON.stringify(action.body));
+
+        const { hasura_id } = action.body;
+        const { name, mobile } = store.getState().authForm;
+        let profileData = { name, mobile, uid: hasura_id };
+
+        store.dispatch(Profile.signUpProfile(profileData));
         store.dispatch(authActions.authPageSet("login"));
     }
 
@@ -51,14 +62,27 @@ const localStateReducerConfig = {
 
 const localStateReducerPersist = persistReducer(localStateReducerConfig, localStateReducer);
 
+const authFormInitState = {
+    name: "",
+    mobile: "",
+    username: "",
+    password: ""
+};
+
 const store = createStore(
     combineReducers({
         auth: Auth.rootReducer,
+        profile: Profile.rootReducer,
+        location: Location.rootReducer,
+        restaurants: Restaurants.rootReducer,
         userAuth: authReducer,
         notifi: notifiReducer,
         router: routerReducer,
         burgerMenu,
-        localState: localStateReducerPersist
+        localState: localStateReducerPersist,
+        ...createForms({
+            authForm: authFormInitState
+        })
     }),
     applyMiddleware(
         thunk, logger,
