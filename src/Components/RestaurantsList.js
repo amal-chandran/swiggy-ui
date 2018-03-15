@@ -11,30 +11,10 @@ import RestaurantCard from './RestaurantCard';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Restaurants } from './../Resource';
-
-const MenuItems = [
-	{
-		name: "Popular",
-		subname: "31 OPTIONS",
-		icon: "fa fa-fire"
-	}, {
-		name: "Offers around you",
-		subname: "10 OPTIONS",
-		icon: "fa fa-certificate"
-	}, {
-		name: "Vegetarian Options",
-		subname: "23 OPTIONS",
-		icon: "fa fa-leaf"
-	}, {
-		name: "Pocket Friendly",
-		subname: "5 OPTIONS",
-		icon: "fa fa-credit-card"
-	}, {
-		name: "All Restaurants",
-		subname: "100 OPTIONS",
-		icon: "fa fa-arrow-circle-right"
-	}
-];
+import { Link } from 'react-router-dom';
+import { menuActions } from './../Actions';
+import Waypoint from 'react-waypoint';
+import { StickyContainer, Sticky } from 'react-sticky';
 
 class RestaurantsList extends Component {
 	constructor(props) {
@@ -62,9 +42,11 @@ class RestaurantsList extends Component {
 	render() {
 		// const classes = this.props.classes;
 		const { isFetchingItem, item } = this.props.restaurants;
-		if (isFetchingItem && item !== null) {
+		const { actions } = this.props;
+
+		if (isFetchingItem || item === null) {
 			return (
-				<div style={{ textAlign: 'center', }}>
+				<div style={{ textAlign: 'center', display: "flex", flex: "1", alignItems: "center", justifyContent: "center", height: "calc(100vh - 6rem)" }}>
 					<CircularProgress size={80} style={{ color: '#f5861f' }}>
 					</CircularProgress>
 				</div>
@@ -72,54 +54,115 @@ class RestaurantsList extends Component {
 			);
 		}
 		// let SampleHotels=[];
-		const Items = item === null ? [] : item;
+		let MenuItems = [];
+		let Items = [];
+		try {
+			Items = item.Items;
+			MenuItems = item.MenuItems;
+			MenuItems = MenuItems.map((data) => {
+				return { ...data, "subname": data.count + " OPTIONS" }
+			});
+		} catch (e) {
+
+		};
 
 		return (
-			<Grid container className="restaurant" style={{ minHeight: '20em', paddingTop: '1.5em' }}>
-				<Grid item>
-					<ListMenu data={MenuItems} />
-				</Grid>
-				<Grid item xs={8}>
-					<Grid container spacing={8}>
-						<Grid item xs={12} style={{ height: 'fit-content' }}>
-							<h1 style={{ paddingLeft: "1rem" }}>
-								Popular
-							</h1>
-						</Grid>
+			<StickyContainer>
+				<Grid container className="restaurant" style={{ minHeight: '20em', paddingTop: '1.5em' }}>
+					<Grid item xs={3}>
+						<Sticky>
+							{({ style, isSticky }) => {
+								return (
+									<RestaurantsListMenu style={style} data={MenuItems} />
+								);
+							}}
+						</Sticky>
+					</Grid>
+					<Grid item xs={8}>
+						{
+							MenuItems.map((SingleSection, i) => {
+								return (
+									<Waypoint key={i} onEnter={() => { actions.setActive(i); }}>
+										<div id={SingleSection.name}>
+											<Grid container spacing={8}>
+												<Grid item xs={12} style={{ height: 'fit-content' }}>
+													<h1 style={{ paddingLeft: "1rem" }}> {SingleSection.name} </h1>
+												</Grid>
+												{Items.map((SingleRestaurant, j) => {
 
-						{Items.map((sample, i) => (
-							<Grid item key={i} xs={4} style={{ height: 'fit-content' }}>
-								{/* <a href={"/restaurants/" + sample.name} > */}
-								<RestaurantCard data={sample} />
-								{/* </a> */}
-							</Grid>
+													if (SingleSection.name === SingleRestaurant.choicename) {
 
-						))}
+														return (
+															<Grid item key={j} xs={4} style={{ height: 'fit-content' }}>
+																{/* <a href={"/restaurants/" + sample.name} > */}
+																<Link to={"/" + this.props.location + "/" + SingleRestaurant.name}>
+																	<RestaurantCard data={SingleRestaurant} />
+																</Link>
+																{/* </a> */}
+															</Grid>
+														);
+													}
+												})}
+											</Grid>
+										</div>
 
-
-
+									</Waypoint>
+								);
+							})
+						}
 					</Grid>
 				</Grid>
-			</Grid>
+			</StickyContainer>
+
 		);
 	}
 }
 const mapStateToProps = (state) => {
-	const { restaurants } = state;
+	const { restaurants, localState } = state;
 	return {
-		restaurants
+		restaurants, location: localState.location
 	}
 };
 const mapDispatchToProps = (dispatch) => {
 	const { getRestaurants } = Restaurants;
+	const { setActive } = menuActions;
+
 	return {
 		actions: bindActionCreators({
-			getRestaurants
+			getRestaurants, setActive
+		}, dispatch)
+	};
+};
+export default connect(mapStateToProps, mapDispatchToProps)(RestaurantsList);
+
+let RestaurantsListMenu = (props) => {
+	return (
+		<div style={props.style}>
+			<ListMenu
+				active={props.RestaurantsListMenu}
+				selectionChanged={(id, data) => { window.location = "#" + data.name; props.actions.setActive(id) }}
+				data={props.data} />
+		</div>
+	);
+};
+
+
+const mapStateToPropsList = (state) => {
+	const { menu } = state;
+	return {
+		RestaurantsListMenu: menu.RestaurantsListMenu
+	}
+};
+const mapDispatchToPropsList = (dispatch) => {
+	const { setActive } = menuActions;
+	return {
+		actions: bindActionCreators({
+			setActive
 		}, dispatch)
 	};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(RestaurantsList);
+RestaurantsListMenu = connect(mapStateToPropsList, mapDispatchToPropsList)(RestaurantsListMenu);
 
 
 // const styles = theme => ({

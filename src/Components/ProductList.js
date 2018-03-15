@@ -22,6 +22,10 @@ import Close from 'material-ui-icons/Close';
 import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
 import GridList, { GridListTile, } from 'material-ui/GridList';
 import { CircularProgress } from 'material-ui/Progress';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { RestaurantMenuItems, Restaurants } from './../Resource';
+import { menuActions } from './../Actions';
 import LineMenu from './LineMenu';
 import ProductCard from './ProductCard';
 import Cart from './Cart';
@@ -143,46 +147,82 @@ class ProductList extends Component {
 		console.log("CLOSE");
 		this.setState({ viewModalOpen: false, selected: {} });
 	}
+
+	componentWillMount() {
+		console.log("Product List", this.props.data);
+		this.props.actions.getRestaurantMenuItems(this.props.data);
+	}
+
 	render() {
 		const { classes } = this.props;
-		if (this.state.loading) {
+		const { isFetchingItem, item } = this.props.restaurantmenuitems;
+
+		if (isFetchingItem || item === null) {
 			return (
-				<div style={{ textAlign: 'center', }}>
+				<div style={{ textAlign: 'center', display: "flex", flex: "1", alignItems: "center", justifyContent: "center", height: "calc(100vh - 6rem)" }}>
 					<CircularProgress size={80} style={{ color: '#f5861f' }}>
 					</CircularProgress>
 				</div>
 
 			);
 		}
-		else {
-			return (
-				<Wrapper>
-					<Grid container>
-						<Grid style={{
-							borderRight: "1px solid #d6d6d6",
-							padding: '0px',
-							paddingTop: '4rem'
-						}} item xs={3}>
-							<LineMenu data={MenuItems} />
-						</Grid>
-						<Grid item xs={6} >
-							<Grid style={{ padding: "2rem" }} container>
-								{items.map((item, i) => (
-									<Grid item key={i} xs={6} style={{ height: 'fit-content' }}>
-										<ProductCard data={item} />
-									</Grid>
-								))}
-							</Grid>
-						</Grid>
-						<Grid item xs={3}>
-							<Cart />
+		let MenuItems = [];
+		let Items = [];
+		try {
+			Items = item.Items;
+			MenuItems = item.MenuItems;
+		} catch (e) {
+
+		};
+
+		return (
+			<Wrapper>
+				<Grid container>
+					<Grid style={{
+						borderRight: "1px solid #d6d6d6",
+						padding: '0px',
+						paddingTop: '4rem'
+					}} item xs={3}>
+						<LineMenu data={MenuItems} />
+					</Grid>
+					<Grid item xs={6} >
+						<Grid style={{ padding: "2rem" }} container>
+							{Items.map((item, i) => (
+								<Grid item key={i} xs={6} style={{ height: 'fit-content' }}>
+									<ProductCard data={item} />
+								</Grid>
+							))}
 						</Grid>
 					</Grid>
-				</Wrapper>
-			);
-		}
+					<Grid item xs={3}>
+						<Cart />
+					</Grid>
+				</Grid>
+			</Wrapper>
+		);
 	}
+
 }
 
-export default withStyles(styles)(ProductList);
 
+
+const mapStateToProps = (state) => {
+	const { restaurantmenuitems, restaurants, localState } = state;
+	return {
+		restaurantmenuitems, restaurants, location: localState.location
+	}
+};
+const mapDispatchToProps = (dispatch) => {
+	const { getRestaurant } = Restaurants;
+	const { getRestaurantMenuItems } = RestaurantMenuItems;
+	const { setActive } = menuActions;
+
+	return {
+		actions: bindActionCreators({
+			getRestaurant, getRestaurantMenuItems, setActive
+		}, dispatch)
+	};
+};
+
+
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(ProductList));

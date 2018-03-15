@@ -158,3 +158,30 @@ const SampleHotels = [
 	}
 ];
 
+[
+	{
+		"name": "Popular",
+		"type":"RestaurantsList",
+		"icon": "fa fa-fire"
+	}, {
+		"name": "Offers around you",
+		"type":"RestaurantsList",
+		"icon": "fa fa-certificate"
+	}, {
+		"name": "Vegetarian Options",
+		"type":"RestaurantsList",
+		"icon": "fa fa-leaf"
+	}, {
+		"name": "Pocket Friendly",
+		"type":"RestaurantsList",
+		"icon": "fa fa-credit-card"
+	}, {
+		"name": "All Restaurants",
+		"type":"RestaurantsList",
+		"icon": "fa fa-arrow-circle-right"
+	}
+]
+
+CREATE VIEW menuItems AS SELECT co.name,co.icon,COUNT(*) FROM choices AS co,choicestypelink AS ck WHERE co.coid=ck.choiceid GROUP BY co.coid;
+
+CREATE VIEW restaurantsGrouped AS SELECT rs.rid,rs.name,rs."imageCover",rs."costTwo",rs."type",rs.rating,rs.servetime,rs.address,co.name AS choicename FROM restaurants AS rs,choicestypelink AS cl,choices AS co WHERE rs.rid=cl.typeid AND cl.choiceid=co.coid AND co."type"='RestaurantsList';

@@ -2,26 +2,19 @@ import React, { Component } from 'react';
 import { Avatar, withStyles, List, ListItem, ListItemText } from 'material-ui'
 
 class ListMenu extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            active: 0
-        };
-    }
 
     static defaultProps = {
-        selectionChanged: () => { }
+        selectionChanged: () => { },
+        active: "0"
     };
 
     setActiveItem = (id, data) => {
-        this.setState({ active: id });
-        this.props.selectionChanged(data);
+        this.props.selectionChanged(id, data);
     };
 
     render() {
         const classes = this.props.classes;
-        const { active } = this.state;
-        const { data } = this.props;
+        const { data, active } = this.props;
         return (
             <List className={classes.List}>
                 {

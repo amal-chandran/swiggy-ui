@@ -3,6 +3,7 @@ import { Grid } from "material-ui";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { action as toggleMenu } from 'redux-burger-menu';
+import { Link } from "react-router-dom";
 
 import Wrapper from "./Wrapper";
 import { SwiggyLogo, SwiggySymbol } from "./../Assets";
@@ -28,12 +29,15 @@ class Header extends Component {
                     <Grid container direction="row" justify="space-between" alignItems="center">
                         <Grid item xs={2}>
                             <div style={{ display: "flex", alignItems: "center" }}>
-                                {
-                                    layout === "Normal" ?
-                                        <img className="HeaderLogo" src={SwiggyLogo} alt="logo" />
-                                        :
-                                        <img className="HeaderLogo" src={SwiggySymbol} alt="logo" />
-                                }
+                                <Link to="/">
+                                    {
+                                        layout === "Normal" ?
+                                            <img className="HeaderLogo" src={SwiggyLogo} alt="logo" />
+                                            :
+                                            <img className="HeaderLogo" src={SwiggySymbol} alt="logo" />
+                                    }
+                                </Link>
+
                                 <div style={{
                                     marginLeft: "1rem",
                                     fontWeight: "bold",

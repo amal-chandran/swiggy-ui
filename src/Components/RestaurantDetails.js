@@ -23,7 +23,7 @@ export default (props) => {
                     textAlign: "center",
                     width: 'fit-content',
                 }}>
-                    <i className="fa fa-star"></i>{props.rating}
+                    <i className="fa fa-star"></i>{"  " + props.rating}
                 </div>
                 <div>
                     &bull;

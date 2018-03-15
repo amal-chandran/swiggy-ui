@@ -10,8 +10,8 @@ import { createForms } from 'react-redux-form';
 
 import history from "./history";
 import { authActions, notifiActions } from "./../Actions";
-import { authReducer, notifiReducer, localStateReducer } from "./../Reducers";
-import { Auth, Profile, Location, Restaurants } from "./../Resource";
+import { authReducer, notifiReducer, localStateReducer, menuReducer } from "./../Reducers";
+import { Auth, Profile, Location, Restaurants, RestaurantMenuItems } from "./../Resource";
 
 const customMiddleWare = store => next => action => {
 
@@ -37,6 +37,10 @@ const customMiddleWare = store => next => action => {
     if (action.type.includes("LOCAL/")) {
         store.dispatch(toggleMenu(false, "LocationManage"));
         store.dispatch(push("/" + action.payload.location));
+    }
+
+    if (action.type === "@@resource/RESTAURANTMENUITEMS/CLEAR_ITEMS" && action.status === "resolved") {
+        store.dispatch(RestaurantMenuItems.getRestaurantMenuItemsAfter(action.context.restaurant));
     }
 
     if (action.type.includes("@@resource/AUTH/") && action.status === "rejected" && "body" in action) {
@@ -75,9 +79,11 @@ const store = createStore(
         profile: Profile.rootReducer,
         location: Location.rootReducer,
         restaurants: Restaurants.rootReducer,
+        restaurantmenuitems: RestaurantMenuItems.rootReducer,
         userAuth: authReducer,
         notifi: notifiReducer,
         router: routerReducer,
+        menu: menuReducer,
         burgerMenu,
         localState: localStateReducerPersist,
         ...createForms({
