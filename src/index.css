@@ -165,3 +165,335 @@ ul, li {
   display: inline-block;
   padding: 1rem;
 }
+
+@font-face {
+  font-family: icomoon;
+  src: url(https://s3-ap-southeast-1.amazonaws.com/static.swiggy/production_dweb/fonts/icomoon.aa91c1.eot);
+  src: url(https://s3-ap-southeast-1.amazonaws.com/static.swiggy/production_dweb/fonts/icomoon.aa91c1.eot#iefix) format("embedded-opentype"), url(https://s3-ap-southeast-1.amazonaws.com/static.swiggy/production_dweb/fonts/icomoon.afa6d1.ttf) format("truetype"), url(https://s3-ap-southeast-1.amazonaws.com/static.swiggy/production_dweb/fonts/icomoon.df8250.woff) format("woff"), url(https://s3-ap-southeast-1.amazonaws.com/static.swiggy/production_dweb/fonts/icomoon.128c09.svg#icomoon) format("svg");
+  font-weight: 400;
+  font-style: normal
+}
+
+[class*=" icon-"], [class^=icon-] {
+  font-family: icomoon;
+  speak: none;
+  font-style: normal;
+  font-weight: 400;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale
+}
+
+.icon-meat:before {
+  content: "\E91A"
+}
+
+.icon-leaf:before {
+  content: "\E91B"
+}
+
+.icon-percentage:before {
+  content: "\E91D"
+}
+
+.icon-downArrow:before {
+  content: "\E91E"
+}
+
+.icon-back:before {
+  content: "\E91F"
+}
+
+.icon-cartInverse:before {
+  content: "\E920"
+}
+
+.icon-clock:before {
+  content: "\E921"
+}
+
+.icon-close:before {
+  content: "\E922"
+}
+
+.icon-downArrow2:before {
+  content: "\E923"
+}
+
+.icon-downArrowSmall:before {
+  content: "\E924"
+}
+
+.icon-explore:before {
+  content: "\E90B"
+}
+
+.icon-heart:before {
+  content: "\E925"
+}
+
+.icon-heartInverse:before {
+  content: "\E926"
+}
+
+.icon-filter:before {
+  content: "\E927"
+}
+
+.icon-home:before {
+  content: "\E928"
+}
+
+.icon-info:before {
+  content: "\E929"
+}
+
+.icon-longDistance:before {
+  content: "\E92B"
+}
+
+.icon-menu:before {
+  content: "\E92C"
+}
+
+.icon-rightArrow:before {
+  content: "\E92D"
+}
+
+.icon-moreVertical:before {
+  content: "\E92E"
+}
+
+.icon-orderConfirmed:before {
+  content: "\E910"
+}
+
+.icon-orderReceived:before {
+  content: "\E912"
+}
+
+.icon-order-confirmed-inverse:before {
+  content: "\E92F"
+}
+
+.icon-order-received-inverse:before {
+  content: "\E92A"
+}
+
+.icon-orderPickedup:before {
+  content: "\E913"
+}
+
+.icon-phone:before {
+  content: "\E933"
+}
+
+.icon-star:before {
+  content: "\E934"
+}
+
+.icon-recent:before {
+  content: "\E935"
+}
+
+.icon-refer:before {
+  content: "\E936"
+}
+
+.icon-restaurant:before {
+  content: "\E937"
+}
+
+.icon-magnifier:before {
+  content: "\E90B"
+}
+
+.icon-starInverse:before {
+  content: "\E938"
+}
+
+.icon-lightning:before {
+  content: "\E939"
+}
+
+.icon-longDistanceSurge:before {
+  content: "\E93A"
+}
+
+.icon-swgy:before {
+  content: "\E93B"
+}
+
+.icon-swgyInverse:before {
+  content: "\E93C"
+}
+
+.icon-tickSharp:before {
+  content: "\E93D"
+}
+
+.icon-tickRound:before {
+  content: "\E93E"
+}
+
+.icon-foodSymbol:before {
+  content: "\E940"
+}
+
+.icon-verified:before {
+  content: "\E941"
+}
+
+.icon-work:before {
+  content: "\E942"
+}
+
+.icon-offer-filled:before {
+  content: "\E91C"
+}
+
+.icon-downCircle:before {
+  content: "\E931"
+}
+
+.icon-upCircle:before {
+  content: "\E93F"
+}
+
+.icon-badge:before {
+  content: "\E949"
+}
+
+.icon-clockDark:before {
+  content: "\E94A"
+}
+
+.icon-orderCancel:before {
+  content: "\E943"
+}
+
+.icon-orderDelivered:before {
+  content: "\E911"
+}
+
+.icon-delete:before {
+  content: "\E945"
+}
+
+.icon-snacks:before {
+  content: "\E94B"
+}
+
+.icon-homeDark:before {
+  content: "\E946"
+}
+
+.icon-markerDark:before {
+  content: "\E947"
+}
+
+.icon-workDark:before {
+  content: "\E948"
+}
+
+.icon-beverage:before {
+  content: "\E916"
+}
+
+.icon-beverage-2:before {
+  content: "\E917"
+}
+
+.icon-close-thin:before {
+  content: "\E90E"
+}
+
+.icon-location:before {
+  content: "\E90C"
+}
+
+.icon-location-crosshair:before {
+  content: "\E90F"
+}
+
+.icon-alert:before {
+  content: "\E952"
+}
+
+.icon-help:before {
+  content: "\E90A"
+}
+
+.icon-netbanking:before {
+  content: "\E902"
+}
+
+.icon-paybycash:before {
+  content: "\E903"
+}
+
+.icon-preferred:before {
+  content: "\E904"
+}
+
+.icon-saved-card:before {
+  content: "\E905"
+}
+
+.icon-wallet-filled:before {
+  content: "\E906"
+}
+
+.icon-wallet-checkout:before {
+  content: "\E907"
+}
+
+.icon-marker-checkout:before {
+  content: "\E908"
+}
+
+.icon-user-checkout:before {
+  content: "\E909"
+}
+
+.icon-payments:before {
+  content: "\E90D"
+}
+
+.icon-orders:before {
+  content: "\E914"
+}
+
+.icon-offers:before {
+  content: "\E915"
+}
+
+.icon-manage-addresses:before {
+  content: "\E918"
+}
+
+.icon-favourites:before {
+  content: "\E919"
+}
+
+.icon-overdue:before {
+  content: "\E901"
+}
+
+.icon-assured-shield:before {
+  content: "\E930"
+}
+
+.icon-gift-circle:before {
+  content: "\E932"
+}
+
+.icon-add-new-card:before {
+  content: "\E900"
+}
+
+.icon-veg {
+  color: #33ab33;
+}

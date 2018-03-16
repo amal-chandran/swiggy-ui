@@ -115,7 +115,7 @@ class RestaurantMenu extends Component {
                         </Wrapper>
                     </Grid>
                     <Grid item xs={12} style={{ height: 'auto', }}>
-                        <ProductList data={ItemData.name} />
+                        <ProductList data={ItemData} />
                     </Grid>
                 </Grid>
             </UserLayout>

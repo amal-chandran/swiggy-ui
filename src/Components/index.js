@@ -8,6 +8,8 @@ import ListMenu from "./ListMenu";
 import Cart from "./Cart";
 import Notifi from "./Notifi";
 import LoginSignup from "./SideBars/LoginSignup";
+import AddressManage from "./SideBars/AddressManage";
+import ProfileManage from "./SideBars/ProfileManage";
 import LocationManage from "./SideBars/LocationManage";
 import SelectLocations from "./SelectLocations";
 import PrivateRoute from "./PrivateRoute";
@@ -23,5 +25,6 @@ export {
     ProductList, CheckOutSteps,
     Cart, Notifi, PrivateRoute,
     LoginSignup, Router,
-    SelectLocations, LocationManage
+    SelectLocations, LocationManage,
+    AddressManage, ProfileManage
 };

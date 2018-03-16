@@ -17,7 +17,7 @@ import JssProvider from 'react-jss/lib/JssProvider';
 import { store } from "./Helper";
 import { Provider, connect } from "react-redux";
 import { PrivateRoute, Notifi } from "./Components";
-import { LoginSignup, LocationManage, Router } from "./Components";
+import { LoginSignup, LocationManage, AddressManage, Router } from "./Components";
 
 
 // Configure JSS
@@ -31,6 +31,7 @@ class App extends Component {
             <JssProvider jss={jss} generateClassName={generateClassName}>
                 <Provider store={store.store}>
                     <PersistGate loading={null} persistor={store.persistor}>
+                        <AddressManage />
                         <LoginSignup />
                         <LocationManage />
                         <Notifi />

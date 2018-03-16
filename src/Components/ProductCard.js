@@ -4,9 +4,10 @@ import {
     CardContent, CardActions, Button, Grid
 } from "material-ui";
 import RestaurantDetails from './RestaurantDetails';
+import ItemCountButton from './ItemCountButton';
 
 const RestaurantCard = (props) => {
-    const { classes, data } = props;
+    const { classes, data, OrderCount } = props;
     return (
         <Card className={classes.card}>
             <CardMedia
@@ -19,21 +20,25 @@ const RestaurantCard = (props) => {
                 <div style={{ fontSize: ".8rem", paddingTop: '3px', color: "#737373" }}>{data.type}</div>
                 <Grid container justify="space-between" alignItems='center' direction={"row"}>
                     <Grid item>
-                        <div style={{ fontSize: ".9rem", color: "rgb(78, 78, 78)" }}>{data.price}</div>
+                        <div style={{ fontSize: ".9rem", color: "rgb(78, 78, 78)" }}>{data.cost}</div>
                     </Grid>
                     <Grid item>
-                        <Button className={classes.addBtn} size="small" onClick={() => props.viewOpen(data)} >Add </Button>
+                        {
+                            OrderCount === 0 ?
+                                <Button className={classes.addBtn} size="small" onClick={() => props.ItemCountChanges(1)}>Add </Button>
+                                :
+                                <ItemCountButton onChange={props.ItemCountChanges} count={OrderCount} />
+                        }
                     </Grid>
                 </Grid>
-
-
             </CardContent>
         </Card>
     );
 };
 
 RestaurantCard.defaultProps = {
-    viewOpen: () => { }
+    ItemCountChanges: () => { },
+    OrderCount: 0
 }
 const styles = theme => ({
     card: {

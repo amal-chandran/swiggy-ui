@@ -9,3 +9,13 @@ export const setLocation = (location) => {
         }
     };
 }
+
+export const CartItem = (Restaurant, Item) => {
+    return {
+        type: localTypes.CARTITEM_ITEM,
+        payload: {
+            Restaurant,
+            Item
+        }
+    };
+}

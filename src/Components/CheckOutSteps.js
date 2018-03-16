@@ -6,6 +6,9 @@ import Button from 'material-ui/Button';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 import Add from "material-ui-icons/Add";
+import { action as toggleMenu } from 'redux-burger-menu';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 const containerAfter = {
     content: "\"\"",
@@ -133,7 +136,7 @@ class VerticalLinearStepper extends React.Component {
     };
 
     render() {
-        const { classes } = this.props;
+        const { classes,actions } = this.props;
         const steps = getSteps();
         const { activeStep } = this.state;
 
@@ -152,7 +155,7 @@ class VerticalLinearStepper extends React.Component {
                                     <div style={{ fontSize: "1.2em", color: "#7e808c", marginTop: "5px" }}>{data.tagLine}</div>
                                 </StepLabel>
                                 <StepContent classes={{ root: classes.StepContentRoot }}>
-
+                                    <Button onClick={()=>{actions.toggleMenu(true,"AddressManage")}}>Open</Button>
                                     {getContent()}
                                     <div className={classes.actionsContainer}>
                                         <div>
@@ -192,4 +195,17 @@ VerticalLinearStepper.propTypes = {
     classes: PropTypes.object,
 };
 
-export default withStyles(styles)(VerticalLinearStepper);
+const mapStateToProps = (state) => {
+	return {
+    
+    }
+};
+const mapDispatchToProps = (dispatch) => {
+	return {
+		actions: bindActionCreators({
+			toggleMenu
+		}, dispatch)
+	};
+};
+
+export default withStyles(styles)(connect(mapStateToProps,mapDispatchToProps)(VerticalLinearStepper));

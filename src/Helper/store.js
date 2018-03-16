@@ -34,7 +34,7 @@ const customMiddleWare = store => next => action => {
         store.dispatch(authActions.authPageSet("login"));
     }
 
-    if (action.type.includes("LOCAL/")) {
+    if (action.type.includes("LOCAL/SET_LOCATION")) {
         store.dispatch(toggleMenu(false, "LocationManage"));
         store.dispatch(push("/" + action.payload.location));
     }
