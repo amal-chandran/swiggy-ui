@@ -3,7 +3,7 @@ import config from "./../Config/config.json";
 import * as authHelper from "./../Helper/authHelper";
 
 const { actions, rootReducer, types } = createResource({
-    name: "address",
+    name: "order",
     actions: {
         get: {
             method: 'POST',
@@ -30,20 +30,20 @@ const { actions, rootReducer, types } = createResource({
     }
 });
 
-const getAddress = (addressid) => {
+const getOrder = (orderid) => {
     return (dispatch) => {
         dispatch(
             actions.getOrder(
                 {
                     "type": "select",
                     "args": {
-                        "table": "address",
+                        "table": "orders",
                         "columns": [
                             "*"
                         ],
                         "where": {
-                            "addressid": {
-                                "$eq": addressid
+                            "orderid": {
+                                "$eq": orderid
                             }
                         }
                     }
@@ -53,15 +53,15 @@ const getAddress = (addressid) => {
     }
 };
 
-const getAddressList = (data) => {
+const getOrderList = (data) => {
     console.log(actions);
     return (dispatch) => {
         dispatch(
-            actions.fetchAddress(
+            actions.fetchOrders(
                 {
                     "type": "select",
                     "args": {
-                        "table": "address",
+                        "table": "orders",
                         "columns": [
                             "*"
                         ],
@@ -77,17 +77,20 @@ const getAddressList = (data) => {
     }
 };
 
-const addAddress = (data) => {
+const addOrder = (data) => {
+    const { CartItems, ...CommonData } = data;
+    const Orders = CartItems.map((SingleData) => {
+        return { itemid: SingleData.itemid, itemcount: SingleData.ItemCount, ...CommonData };
+    })
+    console.log(Orders);
     return (dispatch) => {
         dispatch(
-            actions.addAddress(
+            actions.addOrder(
                 {
                     "type": "insert",
                     "args": {
-                        "table": "address",
-                        "objects": [
-                            data
-                        ]
+                        "table": "orders",
+                        "objects": Orders
                     }
                 }
             )
@@ -95,4 +98,4 @@ const addAddress = (data) => {
     }
 };
 
-export { rootReducer, getAddress, getAddressList, addAddress };
+export { rootReducer, getOrder, getOrderList, addOrder };

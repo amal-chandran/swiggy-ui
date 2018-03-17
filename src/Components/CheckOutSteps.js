@@ -9,9 +9,8 @@ import {
 import { action as toggleMenu } from 'redux-burger-menu';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Tabs, Tab, TabPanel, TabList } from 'react-web-tabs';
 import AddressBlocks from './AddressBlocks';
-import { PayByCash } from './../Assets';
+import PaymentTabs from './PaymentTabs';
 import { localActions } from './../Actions';
 
 const containerAfter = {
@@ -101,35 +100,6 @@ const styles = theme => ({
         },
 
     },
-
-    PayContainer: {
-        display: 'flex',
-        flexDirection: 'column',
-        padding: "2rem"
-    },
-    PayHeadSub: {
-        fontSize: ".9rem",
-        color: "gray"
-    },
-    PayHead: {
-        fontSize: "1.2rem",
-        fontWeight: "bold",
-        paddingTop: "1rem"
-    },
-    AddressBoxButton: {
-        background: "#60B246",
-        border: "1px solid #60B246",
-        fontSize: ".88rem",
-        color: "#fff",
-        fontWeight: "bold",
-        outline: "none",
-        marginTop: "1rem",
-        marginBottom: "1rem",
-        borderRadius: "0px",
-        "&:hover": {
-            background: "#60B246",
-        }
-    },
 });
 const getSteps = () => {
     return [
@@ -147,30 +117,7 @@ const getContent = (i, { actions, classes }) => {
             break;
         case 1:
             return (
-                <Tabs
-                    style={{
-                        padding: "2rem",
-                        paddingTop: "0px"
-                    }}
-                    defaultTab="vertical-tab-one" vertical>
-                    <TabList>
-                        <Tab tabFor="vertical-tab-one">
-                            <i className="icon-paybycash"></i>Pay on Delivery
-                        </Tab>
-                    </TabList>
-                    <TabPanel tabId="vertical-tab-one">
-                        <div className={classes.PayContainer}>
-
-                            <img style={{ width: "125px" }} src={PayByCash} alt="Cash" />
-                            <div className={classes.PayHead}>Cash</div>
-                            <div className={classes.PayHeadSub}>
-                                Please keep exact change handy to help us serve you better
-                    </div>
-                            <Button className={classes.AddressBoxButton}>Place Order</Button>
-                        </div>
-                    </TabPanel>
-                </Tabs>
-
+                <PaymentTabs />
             );
             break;
     }

@@ -11,7 +11,11 @@ import { createForms } from 'react-redux-form';
 import history from "./history";
 import { authActions, notifiActions, localActions } from "./../Actions";
 import { authReducer, notifiReducer, localStateReducer, menuReducer } from "./../Reducers";
-import { Auth, Profile, Location, Restaurants, RestaurantMenuItems, Address } from "./../Resource";
+import {
+    Auth, Profile, Location,
+    Restaurants, RestaurantMenuItems,
+    Address, Order
+} from "./../Resource";
 
 const customMiddleWare = store => next => action => {
 
@@ -91,6 +95,7 @@ const store = createStore(
         location: Location.rootReducer,
         restaurants: Restaurants.rootReducer,
         address: Address.rootReducer,
+        order: Order.rootReducer,
         restaurantmenuitems: RestaurantMenuItems.rootReducer,
         userAuth: authReducer,
         notifi: notifiReducer,
