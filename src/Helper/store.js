@@ -9,9 +9,9 @@ import { action as toggleMenu } from 'redux-burger-menu';
 import { createForms } from 'react-redux-form';
 
 import history from "./history";
-import { authActions, notifiActions } from "./../Actions";
+import { authActions, notifiActions, localActions } from "./../Actions";
 import { authReducer, notifiReducer, localStateReducer, menuReducer } from "./../Reducers";
-import { Auth, Profile, Location, Restaurants, RestaurantMenuItems } from "./../Resource";
+import { Auth, Profile, Location, Restaurants, RestaurantMenuItems, Address } from "./../Resource";
 
 const customMiddleWare = store => next => action => {
 
@@ -37,6 +37,9 @@ const customMiddleWare = store => next => action => {
     if (action.type.includes("LOCAL/SET_LOCATION")) {
         store.dispatch(toggleMenu(false, "LocationManage"));
         store.dispatch(push("/" + action.payload.location));
+    } else if (action.type.includes("LOCAL/SET_ADDRESS")) {
+        next(action);
+        store.dispatch(localActions.setCheckOutStep(1));
     }
 
     if (action.type === "@@resource/RESTAURANTMENUITEMS/CLEAR_ITEMS" && action.status === "resolved") {
@@ -62,6 +65,7 @@ const logger = createLogger({ predicate: 'development' });
 const localStateReducerConfig = {
     key: 'localState',
     storage,
+    blacklist: ['PageTitle', 'SelectedAddress']
 }
 
 const localStateReducerPersist = persistReducer(localStateReducerConfig, localStateReducer);
@@ -73,12 +77,20 @@ const authFormInitState = {
     password: ""
 };
 
+const addressFormInitState = {
+    address: "",
+    doorflatno: "",
+    landmark: "",
+    addresstype: ""
+};
+
 const store = createStore(
     combineReducers({
         auth: Auth.rootReducer,
         profile: Profile.rootReducer,
         location: Location.rootReducer,
         restaurants: Restaurants.rootReducer,
+        address: Address.rootReducer,
         restaurantmenuitems: RestaurantMenuItems.rootReducer,
         userAuth: authReducer,
         notifi: notifiReducer,
@@ -87,7 +99,8 @@ const store = createStore(
         burgerMenu,
         localState: localStateReducerPersist,
         ...createForms({
-            authForm: authFormInitState
+            authForm: authFormInitState,
+            addressForm: addressFormInitState
         })
     }),
     applyMiddleware(

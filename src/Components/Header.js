@@ -13,7 +13,8 @@ class Header extends Component {
         layout: "Normal"
     }
     render() {
-        const { layout, actions, authLogin, location } = this.props;
+        const { layout, actions, authLogin, localState } = this.props;
+        const { location, PageTitle } = localState;
         let HeaderClass = "Header "
         HeaderClass += layout !== "Normal" ? " HeaderRised " : "";
         let UserProfileName = "";
@@ -27,7 +28,7 @@ class Header extends Component {
             <div className={HeaderClass}>
                 <Wrapper>
                     <Grid container direction="row" justify="space-between" alignItems="center">
-                        <Grid item xs={2}>
+                        <Grid item xs={4}>
                             <div style={{ display: "flex", alignItems: "center" }}>
                                 <Link to="/">
                                     {
@@ -41,11 +42,16 @@ class Header extends Component {
                                 <div style={{
                                     marginLeft: "1rem",
                                     fontWeight: "bold",
-                                    color: "#3d4152"
+                                    color: "#3d4152",
+                                    fontSize: ".88rem"
                                 }}>
-                                    <a onClick={() => { actions.toggleMenu(true, "LocationManage"); }}>
-                                        {location}
-                                    </a>
+                                    {PageTitle !== null ?
+                                        PageTitle
+                                        :
+                                        <a onClick={() => { actions.toggleMenu(true, "LocationManage"); }}>
+                                            {location}
+                                        </a>
+                                    }
                                 </div>
                             </div>
                         </Grid>
@@ -83,7 +89,7 @@ const mapStateToProps = (state) => {
     const { userAuth, localState, profile } = state;
     return {
         authLogin: userAuth.authLogin,
-        location: localState.location,
+        localState,
         profile
     }
 };

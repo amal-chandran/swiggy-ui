@@ -4,6 +4,7 @@ import { Button, withStyles } from 'material-ui';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Auth } from "./../../Resource";
+import { TextBoxRRF, SubmitButton } from './Controls';
 
 class AuthForm extends Component {
 
@@ -18,38 +19,36 @@ class AuthForm extends Component {
     }
 
     render() {
-        const { page, classes } = this.props;
+        const { page } = this.props;
         return (
             <Form model={"authForm"}
                 onSubmit={this.onSubmit}
             >
-                {page === "signup" ?
-                    [
-                        <TextBoxRRF type="text" labelName="Name" model="authForm.name" id="authForm.name" />,
-                        <TextBoxRRF type="text" labelName="Mobile" model="authForm.mobile" id="authForm.mobile" />
-                    ]
-                    : ""}
-                <TextBoxRRF type="text" labelName="Username" model="authForm.username" id="authForm.username" />
-                <TextBoxRRF type="password" labelName="Password" model="authForm.password" id="authForm.password" />
-
-                <Button type="submit" fullWidth
-                    className={classes.TriggerButton}
-                    disabled={this.props.isFetchingItem || this.props.isCreating}>
+                <div className="textfield-group">
+                    {page === "signup" ?
+                        [
+                            <TextBoxRRF type="text" labelName="Name" model="authForm.name" id="authForm.name" />,
+                            <TextBoxRRF type="text" labelName="Mobile" model="authForm.mobile" id="authForm.mobile" />
+                        ]
+                        : ""}
+                    <TextBoxRRF type="text" labelName="Username" model="authForm.username" id="authForm.username" />
+                    <TextBoxRRF type="password" labelName="Password" model="authForm.password" id="authForm.password" />
+                </div>
+                <SubmitButton disabled={this.props.isFetchingItem || this.props.isCreating}>
                     {page === "signup" ? "Sign Up" : "Login"}
-                </Button>
+                </SubmitButton>
+                {/* <Button type="submit" fullWidth
+                    className={classes.TriggerButton}
+                >
+
+                </Button> */}
                 {/* <button className="mui-btn mui-btn--primary" type="submit" >Login</button> */}
             </Form>
         );
     }
 }
 
-const styles = {
-    TriggerButton: {
-        backgroundColor: "#fc8019", color: "white", padding: "0 1rem",
-        borderRadius: "0px", fontWeight: "bold", fontSize: "1rem",
-        marginTop: "1rem"
-    },
-};
+
 
 const mapStateToProps = (state) => {
     const { auth, userAuth } = state;
@@ -71,16 +70,5 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 
-export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(AuthForm));
+export default connect(mapStateToProps, mapDispatchToProps)(AuthForm);
 
-const TextBoxRRF = (props) => {
-    const { labelName, ...ControlProps } = props;
-    return (
-        <div className="textfield-contain">
-            <div className="mui-textfield mui-textfield--float-label">
-                <Control {...ControlProps} />
-                <label>{labelName}</label>
-            </div>
-        </div>
-    );
-}

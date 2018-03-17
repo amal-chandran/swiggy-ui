@@ -1,14 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Stepper, { Step, StepLabel, StepIcon, StepContent } from 'material-ui/Stepper';
-import Button from 'material-ui/Button';
-import Paper from 'material-ui/Paper';
-import Typography from 'material-ui/Typography';
-import Add from "material-ui-icons/Add";
+import {
+    Button, Paper, withStyles,
+    Stepper, Step, StepLabel,
+    StepIcon, StepContent,
+    Grid
+} from 'material-ui';
 import { action as toggleMenu } from 'redux-burger-menu';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Tabs, Tab, TabPanel, TabList } from 'react-web-tabs';
+import AddressBlocks from './AddressBlocks';
+import { PayByCash } from './../Assets';
+import { localActions } from './../Actions';
 
 const containerAfter = {
     content: "\"\"",
@@ -20,6 +24,7 @@ const containerAfter = {
     borderLeft: "1px dashed #b1b1b1",
     zIndex: "0"
 };
+
 
 const styles = theme => ({
     root: {
@@ -41,7 +46,7 @@ const styles = theme => ({
     labelContainer: {
         marginLeft: "23px",
         background: "gray",
-        padding: '23px',
+        padding: '30px',
         backgroundColor: "#fff",
         marginTop: '15px'
     },
@@ -56,14 +61,17 @@ const styles = theme => ({
         marginTop: "0px",
         paddingRight: "0px",
         paddingLeft: "10px",
-        borderLeft: "1px dashed #bdbdbd"
+        borderLeft: "1px dashed #bdbdbd",
+        "&>div": {
+            background: "#fff"
+        }
     },
     iconContainer: {
         width: "3rem",
         height: "3rem",
         background: "#282C3F",
         position: "absolute",
-        fontSize: "2rem",
+        fontSize: "1.5rem",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -92,87 +100,117 @@ const styles = theme => ({
             paddingLeft: "11px"
         },
 
-    }
+    },
+
+    PayContainer: {
+        display: 'flex',
+        flexDirection: 'column',
+        padding: "2rem"
+    },
+    PayHeadSub: {
+        fontSize: ".9rem",
+        color: "gray"
+    },
+    PayHead: {
+        fontSize: "1.2rem",
+        fontWeight: "bold",
+        paddingTop: "1rem"
+    },
+    AddressBoxButton: {
+        background: "#60B246",
+        border: "1px solid #60B246",
+        fontSize: ".88rem",
+        color: "#fff",
+        fontWeight: "bold",
+        outline: "none",
+        marginTop: "1rem",
+        marginBottom: "1rem",
+        borderRadius: "0px",
+        "&:hover": {
+            background: "#60B246",
+        }
+    },
 });
 const getSteps = () => {
     return [
-        { name: "Address", tagLine: "To place your order now, log in to your existing account or sign up." },
-        { name: "Payment", tagLine: "To place your order now, log in to your existing account or sign up." }
+        { name: "Address", tagLine: "To place your order now, log in to your existing account or sign up.", icon: "icon-marker-checkout" },
+        { name: "Payment", tagLine: "Choose payment method.", icon: "icon-wallet-checkout" }
     ];
 }
 
-const getContent = (i) => {
+const getContent = (i, { actions, classes }) => {
     switch (i) {
-        case "1":
-            return <div>Hello</div>
+        case 0:
+            return (
+                <AddressBlocks />
+            );
             break;
-        case "2":
-            return <div>Hello</div>
+        case 1:
+            return (
+                <Tabs
+                    style={{
+                        padding: "2rem",
+                        paddingTop: "0px"
+                    }}
+                    defaultTab="vertical-tab-one" vertical>
+                    <TabList>
+                        <Tab tabFor="vertical-tab-one">
+                            <i className="icon-paybycash"></i>Pay on Delivery
+                        </Tab>
+                    </TabList>
+                    <TabPanel tabId="vertical-tab-one">
+                        <div className={classes.PayContainer}>
+
+                            <img style={{ width: "125px" }} src={PayByCash} alt="Cash" />
+                            <div className={classes.PayHead}>Cash</div>
+                            <div className={classes.PayHeadSub}>
+                                Please keep exact change handy to help us serve you better
+                    </div>
+                            <Button className={classes.AddressBoxButton}>Place Order</Button>
+                        </div>
+                    </TabPanel>
+                </Tabs>
+
+            );
             break;
     }
 }
 
 class VerticalLinearStepper extends React.Component {
-    state = {
-        activeStep: 0,
-    };
-
-    handleNext = () => {
-        this.setState({
-            activeStep: this.state.activeStep + 1,
-        });
-    };
-
-    handleBack = () => {
-        this.setState({
-            activeStep: this.state.activeStep - 1,
-        });
-    };
-
-    handleReset = () => {
-        this.setState({
-            activeStep: 0,
-        });
-    };
 
     render() {
-        const { classes,actions } = this.props;
+        const { classes, actions, localState } = this.props;
         const steps = getSteps();
-        const { activeStep } = this.state;
+        const { CheckOutStep, SelectedAddress } = localState;
 
         return (
             <div className={classes.root}>
                 <div className={classes.borderLine}>
                 </div>
-                <Stepper connector={<div />} classes={{ root: classes.StepperRoot }} activeStep={activeStep} orientation="vertical">
+                <Stepper connector={<div />} classes={{ root: classes.StepperRoot }} activeStep={CheckOutStep} orientation="vertical">
                     {steps.map((data, i) => {
                         return (
                             <Step classes={{ root: classes.StepRoot }}>
                                 <StepLabel classes={{ root: classes.StepLabelRoot, labelContainer: classes.labelContainer, iconContainer: classes.iconContainer }} icon={
-                                    <i className="fa fa-map-marker fa-large" />
+                                    <i className={data.icon} />
                                 }>
-                                    <div style={{ fontSize: "1.8em", fontWeight: "bold" }}>{data.name}</div>
-                                    <div style={{ fontSize: "1.2em", color: "#7e808c", marginTop: "5px" }}>{data.tagLine}</div>
+                                    <div onClick={() => { actions.setCheckOutStep(i) }}>
+                                        <div style={{ fontSize: "1.8em", fontWeight: "bold" }}>{data.name}</div>
+                                        <div style={{ fontSize: "1.2em", color: "#7e808c", marginTop: "5px", fontWeight: "normal" }}>{data.tagLine}</div>
+                                    </div>
+                                    {
+                                        CheckOutStep !== i && SelectedAddress !== null ?
+                                            <div style={{ marginTop: "2rem" }}>
+                                                <div style={{ fontSize: "1rem", fontWeight: "bold" }}>{SelectedAddress.addresstype}</div>
+                                                <div style={{ fontSize: "1rem", color: "#7e808c", margin: "4px 0", fontWeight: "normal" }}>{SelectedAddress.address}</div>
+                                                <div style={{ fontSize: "1rem", fontWeight: "bold" }}>	38 MINS</div>
+                                            </div>
+                                            : ""
+                                    }
+
                                 </StepLabel>
                                 <StepContent classes={{ root: classes.StepContentRoot }}>
-                                    <Button onClick={()=>{actions.toggleMenu(true,"AddressManage")}}>Open</Button>
-                                    {getContent()}
-                                    <div className={classes.actionsContainer}>
-                                        <div>
-                                            <Button
-                                                disabled={activeStep === 0}
-                                                onClick={this.handleBack}
-                                                className={classes.button}
-                                            >Back</Button>
-                                            <Button
-                                                variant="raised"
-                                                color="primary"
-                                                onClick={this.handleNext}
-                                                className={classes.button}
-                                            > {activeStep === 2 ? 'Finish' : 'Next'}
-                                            </Button>
-                                        </div>
-                                    </div>
+                                    {getContent(i, this.props)}
                                 </StepContent>
                             </Step>
                         )
@@ -196,16 +234,18 @@ VerticalLinearStepper.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-	return {
-    
+    const { localState } = state;
+    return {
+        localState
     }
 };
 const mapDispatchToProps = (dispatch) => {
-	return {
-		actions: bindActionCreators({
-			toggleMenu
-		}, dispatch)
-	};
+    const { setCheckOutStep } = localActions;
+    return {
+        actions: bindActionCreators({
+            toggleMenu, setCheckOutStep
+        }, dispatch)
+    };
 };
 
-export default withStyles(styles)(connect(mapStateToProps,mapDispatchToProps)(VerticalLinearStepper));
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(VerticalLinearStepper));

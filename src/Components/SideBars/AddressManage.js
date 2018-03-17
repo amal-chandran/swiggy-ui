@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import LocationPicker from 'react-location-picker';
 import { slide as Menu } from 'react-burger-menu';
 import { decorator as reduxBurgerMenu } from 'redux-burger-menu';
+import AddressForm from './../FormComponents/AddressForm';
+import { withStyles } from 'material-ui';
+
 const AddressManageMenu = reduxBurgerMenu(Menu, "AddressManage");
 
 const MenuStyles = {
@@ -9,33 +11,30 @@ const MenuStyles = {
         width: '500px'
     }
 };
-const defaultPosition = {
-    lat: 27.9878,
-    lng: 86.9250
-};
 
-export default class AddressManage extends Component {
-    state = {
-        address: "Kala Pattar Ascent Trail, Khumjung 56000, Nepal"
-    }
-    handleLocationChange = ({ position, address }) => {
 
-        // Set new location
-        this.setState({ position, address });
-    }
+class AddressManage extends Component {
+
     render() {
+        const { classes } = this.props;
+
         return (
             <AddressManageMenu customBurgerIcon={false} styles={MenuStyles}>
+                <h1 className={classes.h1}>Save delivery address</h1>
                 <div>
-                    <h1>{this.state.address}</h1>
-                    <LocationPicker
-                        containerElement={<div style={{ height: '100%' }} />}
-                        mapElement={<div style={{ height: '400px' }} />}
-                        defaultPosition={defaultPosition}
-                        onChange={this.handleLocationChange}
-                    />
+                    <AddressForm></AddressForm>
                 </div>
             </AddressManageMenu>
         );
     }
 }
+
+const styles = {
+    h1: {
+        marginTop: "0px",
+        color: "black",
+        fontSize: "1rem"
+    }
+}
+
+export default withStyles(styles)(AddressManage);
