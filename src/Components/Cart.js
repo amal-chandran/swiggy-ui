@@ -3,6 +3,7 @@ import { withStyles } from 'material-ui';
 import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import isEmpty from 'lodash/isEmpty';
 
 import { CartEmpty } from './../Assets';
 import ItemCountButton from './ItemCountButton';
@@ -25,101 +26,108 @@ class Cart extends Component {
         let SubTotalCost = 0;
         return (
             <div className={containClass}>
-                {/* <h1 style={{ color: " #7e808c" }}>Cart Empty</h1>
-                <div className={classes.Cart}>
+                {isEmpty(CartItems) ?
+                    <div>
+                        <h1 style={{ color: " #7e808c" }}>Cart Empty</h1>
+                        <div className={classes.Cart}>
 
-                </div>
-                <div style={{ color: "#93959f" }}>
-                    Good food is always cooking!
-                    Go ahead, order some yummy items from the menu.
-                 </div> */}
-                {
-                    type === "CheckOut" ?
-                        <div className={classes.head}>
-                            <div className={classes.headImage}>
-                                <img src={CartRestaurant.imageCover} alt={CartRestaurant.name} />
-                            </div>
-                            <div>
-                                <div className={classes.headTextHead}>{CartRestaurant.name}</div>
-                                <div className={classes.headTextSubHead}>Kilpauk</div>
-                            </div>
                         </div>
-                        :
-                        <div className={classes.CartHead}>
-                            <h1>Cart</h1>
-                            <div className={classes.CartSubHead}>form <span>{CartRestaurant.name}</span></div>
-                            <div className={classes.CartItemHead}>ITEM {CartItems.length}</div>
+                        <div style={{ color: "#93959f" }}>
+                            Good food is always cooking!
+                            Go ahead, order some yummy items from the menu.
                         </div>
-                }
-
-
-                <div className={classes.ItemsList}>
-
-                    {CartItems.map((SingleItem) => {
-                        const SingleItemPrice = SingleItem.cost * SingleItem.ItemCount;
-                        SubTotalCost += SingleItemPrice;
-                        return (
-                            <div className={classes.Item}>
-                                <div>
-                                    <span class="icon-foodSymbol icon-veg"></span>
-                                </div>
-                                <div className={classes.ItemName}>{SingleItem.name}</div>
-                                <div>
-                                    <ItemCountButton onChange={this.handleItemChange(SingleItem)} count={SingleItem.ItemCount} />
-                                </div>
-                                <div>{SingleItemPrice}</div>
-                            </div>
-                        );
-                    }
-                    )}
-
-                    <div className={classes.Suggestion}>
-                        <textarea placeholder="Any suggestions? We will pass it on..." rows="1"></textarea>
                     </div>
-                    {
-                        type === "CheckOut" ?
-                            <div className={classes.Total}>
-                                <div>
-                                    <div>Item Total</div>
-                                    <div>{SubTotalCost}.00</div>
+                    :
+                    <div>
+                        {
+                            type === "CheckOut" ?
+                                <div className={classes.head}>
+                                    <div className={classes.headImage}>
+                                        <img src={CartRestaurant.imageCover} alt={CartRestaurant.name} />
+                                    </div>
+                                    <div>
+                                        <div className={classes.headTextHead}>{CartRestaurant.name}</div>
+                                        <div className={classes.headTextSubHead}>Kilpauk</div>
+                                    </div>
                                 </div>
-                                <div>
-                                    <div>Restaurant Packaging Charges</div>
-                                    <div>10.00</div>
+                                :
+                                <div className={classes.CartHead}>
+                                    <h1>Cart</h1>
+                                    <div className={classes.CartSubHead}>form <span>{CartRestaurant.name}</span></div>
+                                    <div className={classes.CartItemHead}>ITEM {CartItems.length}</div>
                                 </div>
-                                <div>
-                                    <div>GST</div>
-                                    <div>9.00</div>
-                                </div>
-                                <div>
-                                    <div>Delivery Charges</div>
-                                    <div>0.00</div>
-                                </div>
-                            </div>
-                            :
-                            ""
-                    }
-                </div>
-                {
-                    type === "CheckOut" ?
-                        <div className={classes.TotalPrice}>
-                            <div>TO PAY</div>
-                            <div>{SubTotalCost + 19}</div>
-                        </div>
-                        :
-                        <div className={classes.CartFooter}>
-                            <div className={classes.SubTotalPrice}>
-                                <div className={classes.HeadPrice}>
-                                    <div>Subtotal</div>
-                                    <div>{SubTotalCost}</div>
-                                </div>
+                        }
 
-                                <div className={classes.SubHeadPrice}>Extra charges may apply</div>
+
+                        <div className={classes.ItemsList}>
+
+                            {CartItems.map((SingleItem) => {
+                                const SingleItemPrice = SingleItem.cost * SingleItem.ItemCount;
+                                SubTotalCost += SingleItemPrice;
+                                return (
+                                    <div className={classes.Item}>
+                                        <div>
+                                            <span class="icon-foodSymbol icon-veg"></span>
+                                        </div>
+                                        <div className={classes.ItemName}>{SingleItem.name}</div>
+                                        <div>
+                                            <ItemCountButton onChange={this.handleItemChange(SingleItem)} count={SingleItem.ItemCount} />
+                                        </div>
+                                        <div>{SingleItemPrice}</div>
+                                    </div>
+                                );
+                            }
+                            )}
+
+                            <div className={classes.Suggestion}>
+                                <textarea placeholder="Any suggestions? We will pass it on..." rows="1"></textarea>
                             </div>
-                            <Link to="/checkout">
-                                <button>CHECKOUT</button>
-                            </Link>
+                            {
+                                type === "CheckOut" ?
+                                    <div className={classes.Total}>
+                                        <div>
+                                            <div>Item Total</div>
+                                            <div>{SubTotalCost}.00</div>
+                                        </div>
+                                        <div>
+                                            <div>Restaurant Packaging Charges</div>
+                                            <div>10.00</div>
+                                        </div>
+                                        <div>
+                                            <div>GST</div>
+                                            <div>9.00</div>
+                                        </div>
+                                        <div>
+                                            <div>Delivery Charges</div>
+                                            <div>0.00</div>
+                                        </div>
+                                    </div>
+                                    :
+                                    ""
+                            }
                         </div>
+                        {
+                            type === "CheckOut" ?
+                                <div className={classes.TotalPrice}>
+                                    <div>TO PAY</div>
+                                    <div>{SubTotalCost + 19}</div>
+                                </div>
+                                :
+                                <div className={classes.CartFooter}>
+                                    <div className={classes.SubTotalPrice}>
+                                        <div className={classes.HeadPrice}>
+                                            <div>Subtotal</div>
+                                            <div>{SubTotalCost}</div>
+                                        </div>
+
+                                        <div className={classes.SubHeadPrice}>Extra charges may apply</div>
+                                    </div>
+                                    <Link to="/checkout">
+                                        <button>CHECKOUT</button>
+                                    </Link>
+                                </div>
+                        }
+                    </div>
                 }
             </div>
         );
@@ -247,7 +255,7 @@ const styles = theme => ({
         "& button": {
             background: "#60B246",
             width: "100%",
-            padding: "1.5rem 1rem",
+            padding: "1rem",
             border: "none",
             fontSize: "1.2rem",
             color: "#fff",

@@ -46,6 +46,11 @@ const customMiddleWare = store => next => action => {
         store.dispatch(localActions.setCheckOutStep(1));
     }
 
+    if (action.type === "@@resource/ORDER/ADD" && action.status === "resolved") {
+        store.dispatch(notifiActions.addNotifi("Order Placed", "success"));
+        store.dispatch(localActions.CartItem({}, []));
+    }
+
     if (action.type === "@@resource/RESTAURANTMENUITEMS/CLEAR_ITEMS" && action.status === "resolved") {
         store.dispatch(RestaurantMenuItems.getRestaurantMenuItemsAfter(action.context.restaurant));
     }
